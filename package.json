@@ -1,0 +1,11 @@
+{
+  "name": "cise_speed",
+  "version": "1.0.0",
+  "description": "CISE Project - Creating Software Practice Empirical Evidence Database which is called SPEED.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
