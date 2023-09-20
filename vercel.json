@@ -1,12 +1,5 @@
 {
-    "version": 2,
-    "builds": [
-      { "src": "speed-frontend", "use": "@vercel/static-build", "config": { "distdir": "build" } },
-      { "src": "speed-backend", "use": "@vercel/node" }
-    ],
-    "routes": [
-      { "src": "/api/(.*)", "dest": "backend/$1" },
-      { "src": "/(.*)", "dest": "frontend/build/$1" }
-    ]
-  }
-  
+  "version": 2,
+  "builds": [{ "src": "speed-backend", "use": "@vercel/node" }],
+  "routes": [{ "src": "/api/(.*)", "dest": "backend/$1" }]
+}
