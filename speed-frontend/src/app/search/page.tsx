@@ -1,12 +1,11 @@
-import Image from "next/image";
-import Header from "./nav/Header";
+import Header from "../nav/Header";
 
-export default function Home() {
+export default function SearchView() {
   return (
     <>
       <Header />
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <h1>This is home</h1>
+        <h1>This is search view</h1>
       </div>
     </>
   );
