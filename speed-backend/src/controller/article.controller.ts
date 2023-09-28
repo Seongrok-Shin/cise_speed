@@ -15,6 +15,8 @@ export class ArticleController {
       const newArticle =
         await this.articleService.CreateArticle(createArticleDto);
 
+      console.log(newArticle);
+
       return response.status(HttpStatus.CREATED).json({
         message: 'Article has successfully been created!',
         newArticle,

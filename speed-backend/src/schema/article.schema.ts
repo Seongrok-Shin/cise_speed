@@ -9,7 +9,25 @@ export class Article {
   title: string;
 
   @Prop({ required: true })
-  author: string;
+  authors: string[];
+
+  @Prop({ required: false })
+  journal: string;
+
+  @Prop({ required: true })
+  year: number;
+
+  @Prop({ required: false })
+  volume: number;
+
+  @Prop({ required: true })
+  pages: number;
+
+  @Prop({ required: true })
+  DOI: string;
+
+  @Prop({ default: 'under_review' })
+  status: string;
 }
 
 export const ArticleSchema = SchemaFactory.createForClass(Article);

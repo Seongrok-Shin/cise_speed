@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  MaxLength,
+  IsArray,
+  IsNumber,
+} from 'class-validator';
 
 export class CreateArticleDTO {
   @IsString()
@@ -6,8 +12,27 @@ export class CreateArticleDTO {
   @IsNotEmpty()
   readonly title: string;
 
+  @IsArray()
+  @IsNotEmpty()
+  readonly authors: string[];
+
   @IsString()
   @MaxLength(30)
+  readonly journal: string;
+
+  @IsNumber()
   @IsNotEmpty()
-  readonly author: string;
+  readonly year: number;
+
+  @IsNumber()
+  readonly volume: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  readonly pages: number;
+
+  @IsString()
+  @MaxLength(255)
+  @IsNotEmpty()
+  readonly DOI: string;
 }
