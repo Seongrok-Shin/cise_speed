@@ -1,12 +1,12 @@
+"use client";
+import React from "react";
+import { useRouter } from "next/navigation";
+
 /**
  * @author @Seongrok-Shin
  * Description
  * @returns {any}
  */
-"use client";
-import React from "react";
-import { useRouter } from "next/navigation";
-
 const Header = () => {
   const router = useRouter();
   const HomePage = () => {

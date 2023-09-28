@@ -1,4 +1,6 @@
-import Header from "../nav/Header";
+"use client";
+
+import Header from "../component/Header";
 export default function AnalystView() {
   return (
     <>
