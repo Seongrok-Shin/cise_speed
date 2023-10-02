@@ -1,7 +1,7 @@
 'use client';
 import Image from "next/image";
 import { CreateArticle } from "../../pages/api/api";
-import { Article } from "../../pages/interface/article.interface";
+import { Article } from "../../types/article.interface";
 export default function Home() {
   function  SubmitArticle(){
     console.log("testing");

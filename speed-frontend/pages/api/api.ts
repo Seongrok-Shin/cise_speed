@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Article } from "../interface/article.interface";
+import { Article } from "../../types/article.interface";
 export async function CreateArticle(article:Article){
     try{
         const response = await axios.post(`http://localhost:5000/article/upload/`, article,{
