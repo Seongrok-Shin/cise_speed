@@ -8,8 +8,8 @@ import { Model } from 'mongoose';
 export class ArticleService {
   constructor(@InjectModel('Article') private articleModel: Model<IArticle>) {}
 
-  async CreateArticle(CreateArticleDto: CreateArticleDTO): Promise<IArticle> {
-    const newArticle = new this.articleModel(CreateArticleDto);
+  async CreateArticle(createArticleDto: CreateArticleDTO): Promise<IArticle> {
+    const newArticle = new this.articleModel(createArticleDto);
     return newArticle.save();
   }
 }
