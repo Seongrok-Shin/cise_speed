@@ -11,13 +11,13 @@ export class Article {
   @Prop({ required: true })
   authors: string[];
 
-  @Prop({ required: false })
+  @Prop({ required: true })
   journal: string;
 
   @Prop({ required: true })
   year: number;
 
-  @Prop({ required: false })
+  @Prop({ required: true })
   volume: number;
 
   @Prop({ required: true })
@@ -28,6 +28,18 @@ export class Article {
 
   @Prop({ default: 'under_review' })
   status: string;
+
+  @Prop({ required: true })
+  claim: string;
+
+  @Prop({ required: true })
+  result: boolean;
+
+  @Prop({ required: true })
+  research: string;
+
+  @Prop({ required: true })
+  participant: string;
 }
 
 export const ArticleSchema = SchemaFactory.createForClass(Article);

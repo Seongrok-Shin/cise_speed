@@ -4,6 +4,7 @@ import {
   MaxLength,
   IsArray,
   IsNumber,
+  IsBoolean,
 } from 'class-validator';
 
 export class CreateArticleDTO {
@@ -35,4 +36,26 @@ export class CreateArticleDTO {
   @MaxLength(255)
   @IsNotEmpty()
   readonly DOI: string;
+
+  @IsString()
+  @MaxLength(255)
+  @IsNotEmpty()
+  readonly status :string;
+
+  @IsString()
+  @MaxLength(255)
+  @IsNotEmpty()
+  readonly claim: string;
+
+  @IsBoolean()
+  @IsNotEmpty()
+  readonly result : boolean; 
+  
+  @IsString()
+  @MaxLength(255)
+  readonly research: string;
+
+  @IsString()
+  @MaxLength(255)
+  readonly participant: string;
 }
