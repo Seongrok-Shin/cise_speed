@@ -16,6 +16,11 @@ export default function SearchView() {
   const [filter, setFilter] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
+  const handleAddArticle = (event: any) => {
+    event.preventDefault();
+    router.push("/submit");
+  };
+
   const handleChangeSearch = (event: any) => {
     setSearch(event.target.value);
   };
@@ -74,6 +79,15 @@ export default function SearchView() {
                     type="submit"
                   >
                     Search
+                  </button>
+                </div>
+                <div className="p-1">
+                  <button
+                    className="rounded-xl border-2 border-gray-300 focus:outline-none
+                  focus:border-black text-base font-medium text-gray-700 hover:bg-gray-100"
+                    onClick={handleAddArticle}
+                  >
+                    Add Article
                   </button>
                 </div>
               </div>
