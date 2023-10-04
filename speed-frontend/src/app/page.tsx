@@ -1,6 +1,6 @@
 'use client';
 import Image from "next/image";
-import { CreateArticle } from "../../pages/api/api";
+import { CreateArticle, GetArticles, GetSingleArticle } from "../../pages/api/api";
 import { Article } from "../../types/article.interface";
 export default function Home() {
   function SubmitArticle() {
@@ -29,7 +29,9 @@ export default function Home() {
         <h1>Submit Article Example</h1>
         <input style={{ background: "red" }} type="button" value="Click Me!" onClick={SubmitArticle} />
         <br></br>
-
+        <input style={{ background: "blue" }} type="button" value="Search All!" onClick={GetArticles} />
+        <br></br>
+        <input style={{ background: "green" }} type="button" value="Get Article Title of article!" onClick={() => { GetSingleArticle("Cat") }} />
       </div>
     </main>
   );

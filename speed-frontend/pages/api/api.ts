@@ -27,3 +27,49 @@ export async function CreateArticle(article:Article){
     }
 }
 
+/**
+ * Description
+ * @returns {any}
+ */
+export async function GetArticles(){
+    try{
+        const response :object | void = await axios.get("http://localhost:5000/article/all",{
+            headers: {
+                "Access-Control-Allow-Origin": "", 
+                "Access-Control-Allow-Methods": "GET", 
+                "Access-Control-Allow-Headers": "Content-Type", 
+              }
+        }).then((data:any) => {
+            alert(JSON.stringify(data.data));
+            console.log(JSON.stringify(data.data));
+        });
+        return response;
+    }
+    catch(error){
+        alert(error);
+        console.error(`error${error}`);
+        throw error;
+    }
+}
+
+export async function GetSingleArticle(title: string){
+    try{
+        const response :object | void = await axios.get(`http://localhost:5000/article/${title}`,
+        {
+            headers: {
+                "Access-Control-Allow-Origin": "", 
+                "Access-Control-Allow-Methods": "GET", 
+                "Access-Control-Allow-Headers": "Content-Type", 
+              }
+        }).then((data:any) => {
+            alert(JSON.stringify(data.data));
+            console.log(JSON.stringify(data.data))
+          });
+          return response;
+    }
+    catch (error) {
+        alert(error);
+        console.error(`error${error}`);
+        throw error;
+    }
+}

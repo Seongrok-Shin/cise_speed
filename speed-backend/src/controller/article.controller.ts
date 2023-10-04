@@ -1,6 +1,6 @@
 import { Body, HttpStatus, Post, Get, Res, Controller, Param } from '@nestjs/common';
-import { CreateArticleDTO } from 'src/dto/create-article.dto';
-import { ArticleService } from 'src/service/article.service';
+import { CreateArticleDTO } from '../dto/create-article.dto';
+import { ArticleService } from '../service/article.service';
 
 @Controller('article')
 export class ArticleController {
@@ -57,7 +57,7 @@ export class ArticleController {
         message: 'Article has successfully been searched!',
         article,
       })
-    } catch(err: any){
+    } catch (err: any) {
       return response.status(HttpStatus.BAD_REQUEST).json({
         statusCode: 400, 
         message: 'There was an error searching the article',
