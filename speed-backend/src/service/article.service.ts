@@ -8,17 +8,24 @@ import { Model } from 'mongoose';
 export class ArticleService {
   constructor(@InjectModel('Article') private articleModel: Model<IArticle>) {}
 
+
+  /**
+   * @author Logan Wood
+   * @description Description: creates new article with inputs.
+   * @param {any} CreateArticleDto:CreateArticleDTO
+   * @returns {any}: void
+   */
   async CreateArticle(CreateArticleDto: CreateArticleDTO): Promise<IArticle> {
     const newArticle = new this.articleModel(CreateArticleDto);
     return newArticle.save();
   }
 
   /**
-   * @author @dgw7626
-   * Description
-   * @returns {any}
+   * @author @dgw7626 Hanul Rheem
+   * @description: returns all available articles
+   * @returns {any} Aritcle[]
    */
-  async GetArticles(){
+  async getArticles(){
     const articles = await this.articleModel.find().exec();
     return articles.map((article: IArticle) => ({
       title: article.title,
@@ -36,12 +43,24 @@ export class ArticleService {
         }));
   }
 
-  async SearchSingleArticle(anyValue: any ){
-    const article = await this.FindArticleAny(anyValue);
+  /**
+   * @author @dgw7626 Hanul Rheem
+   * @description: returns one article
+   * @param {any} anyValue:any
+   * @returns {any} Article
+   */
+  async searchSingleArticle(anyValue: any ){
+    const article = await this.findArticleAny(anyValue);
     return article;
   }
 
-  private async FindArticleAny(anyValue: any ): Promise<IArticle[]> {
+  /**
+   * @author @dgw7626 Hanul Rheem
+   * @description: finds the specific article with the keyword.
+   * @param {any} anyValue:any
+   * @returns {any} Article[]
+   */
+  private async findArticleAny(anyValue: any ): Promise<IArticle[]> {
     let tempArticle: any[];
     try{
       tempArticle = await this.articleModel.find({
@@ -65,6 +84,12 @@ export class ArticleService {
     return tempArticle;
   }
 
+  /**
+   * @author @dgw7626 Hanul Rheem
+   * @description: check if the object is null or empty.
+   * @param {any} value:any
+   * @returns {any} : void
+   */
   private isEmpty(value: any){
     return value && Object.keys(value).length === 0;
   }

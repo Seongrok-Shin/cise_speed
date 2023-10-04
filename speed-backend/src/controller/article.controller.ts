@@ -6,6 +6,12 @@ import { ArticleService } from '../service/article.service';
 export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
+  /**
+   * @author @dgw7626 Hanul Rheem
+   * @description: creates new article.
+   * @param {any} 'upload'
+   * @returns {any}: void
+   */
   @Post('upload')
   async createArticle(
     @Res() response,
@@ -30,10 +36,16 @@ export class ArticleController {
     }
   }
 
+  /**
+   * @author @dgw7626 Hanul Rheem
+   * @description: returns all relavent articles.
+   * @param {any} 'all'
+   * @returns {any} Article[]
+   */
   @Get('all')
-  async GetArticle(@Res() response){
+  async getArticles(@Res() response){
     try{
-      const article = await this.articleService.GetArticles();
+      const article = await this.articleService.getArticles();
       console.log(article);
       return response.status(HttpStatus.OK).json({
         message: 'Article has successfully been searched!',
@@ -48,10 +60,16 @@ export class ArticleController {
     }
   }
   
+  /**
+   * @author @dgw7626 Hanul Rheem
+   * @description: returns with signle article with keyword.
+   * @param {any} ':id'
+   * @returns {any} Article
+   */
   @Get(':id')
-  async GetTitleArtilce(@Res() response, @Param('id') title: string) {
+  async getSingleArticle(@Res() response, @Param('id') title: string) {
     try{
-      const article = await this.articleService.SearchSingleArticle(title);
+      const article = await this.articleService.searchSingleArticle(title);
       console.log(article);
       return response.status(HttpStatus.OK).json({
         message: 'Article has successfully been searched!',

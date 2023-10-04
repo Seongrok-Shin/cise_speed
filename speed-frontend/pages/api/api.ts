@@ -1,10 +1,10 @@
 import axios from "axios";
 import { Article } from "../../types/article.interface";
 /**
- * Description
- * @author @dgw7626
+ * @author @dgw7626 Hanul Rheem
+ * @description: creates new article
  * @param {any} article:Article
- * @returns {any}
+ * @returns {any}: void
  */
 export async function CreateArticle(article:Article){
     try{
@@ -27,13 +27,15 @@ export async function CreateArticle(article:Article){
     }
 }
 
+
 /**
- * Description
+ * @author @dgw7626 Hanul Rheem
+ * @description: returns all articles
  * @returns {any}
  */
 export async function GetArticles(){
     try{
-        const response :object | void = await axios.get("http://localhost:5000/article/all",{
+        const response :object | void = await axios.get( "http://localhost:5000/article/all",{
             headers: {
                 "Access-Control-Allow-Origin": "", 
                 "Access-Control-Allow-Methods": "GET", 
@@ -52,9 +54,15 @@ export async function GetArticles(){
     }
 }
 
-export async function GetSingleArticle(title: string){
+/**
+ * @author @dgw7626 Hanul Rheem
+ * @description: returns single article with keyword
+ * @param {any} anyValue:string
+ * @returns {any}: Article
+ */
+export async function GetSingleArticle(anyValue: string){
     try{
-        const response :object | void = await axios.get(`http://localhost:5000/article/${title}`,
+        const response :object | void = await axios.get( `http://localhost:5000/article/${anyValue}`,
         {
             headers: {
                 "Access-Control-Allow-Origin": "", 

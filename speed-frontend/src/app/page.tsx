@@ -3,6 +3,7 @@ import Image from "next/image";
 import { CreateArticle, GetArticles, GetSingleArticle } from "../../pages/api/api";
 import { Article } from "../../types/article.interface";
 export default function Home() {
+  //Example use case of api calls.
   function SubmitArticle() {
     console.log("testing");
     const article: Article = {

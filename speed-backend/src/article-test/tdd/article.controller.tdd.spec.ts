@@ -38,27 +38,46 @@ describe('Controller', () => {
     }
   })
   
-  describe('GetAllArticles', () => {
+  describe('TDD-GetAllArticles', () => {
     it('it should return all articles', async () => {
-      
-      const response = await request(app.getHttpServer()).get('/article/all');
+      let response: any = null;
+      expect(response).toBe(null);
+      response = await request(app.getHttpServer()).get('/article/all');
+      expect(response).toBeDefined();
       expect(response.status).toBe(HttpStatus.OK);
     });
   })
 
-  describe('GetTitleArticle', () => {
+  describe('TDD-GetTitleArticle', () => {
     it('should return a searched article', async () => {
-     
+      let response: any = null;
+      const emptyTitle: string = "";
+
+      expect(response).toBe(null);
+      
+      response = await request(app.getHttpServer()).get(`/article/${emptyTitle}`);
+
+      expect(response).toBeDefined();
+      expect(response).toBe(HttpStatus.BAD_REQUEST);
       const mockTitle:string = "Cat";
+      response = await request(app.getHttpServer()).get(`/article/${mockTitle}`);
 
-      const response = await request(app.getHttpServer()).get(`/article/${mockTitle}`);
       expect(response.status).toBe(HttpStatus.OK);
-
     });
   })
 
-  describe('CreateArticle', () => {
+  describe('TDD-CreateArticle', () => {
     it('should create a article without errors', async () => {
+
+      let response: any = null;
+      
+      const emptyArticle : any  = {};
+
+      response = await request(app.getHttpServer())
+        .post('/article/upload')
+        .send(emptyArticle);
+      expect(response.status).toBe(HttpStatus.BAD_REQUEST);
+
       const mockArticle: any = {
         title: 'Cat',
         authors: ["meow", "maow"],
@@ -74,11 +93,13 @@ describe('Controller', () => {
         participant: "fasdfsd"
       };
 
-      const response = await request(app.getHttpServer())
+
+      response = await request(app.getHttpServer())
         .post('/article/upload')
         .send(mockArticle);
-
       expect(response.status).toBe(HttpStatus.CREATED);
+
+      
     });
   })
 

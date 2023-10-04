@@ -8,7 +8,7 @@ import { ArticleService } from './service/article.service';
 import { ArticleController } from './controller/article.controller';
 @Module({
   imports: [
-    ConfigModule.forRoot({ envFilePath: './.env' }),
+    ConfigModule.forRoot({ envFilePath: './.env', isGlobal: true }),
     MongooseModule.forRoot(process.env.MONGODB_URL),
     MongooseModule.forFeature([{ name: 'Article', schema: ArticleSchema }]),
   ],
