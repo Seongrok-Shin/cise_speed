@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form should match snapshot 1`] = `
+<div
+  className="flex flex-col items-center"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="py-2"
+    >
+      <input
+        className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+        name="title"
+        onChange={[Function]}
+        placeholder="Enter title"
+        required={true}
+        type="text"
+        value="d"
+      />
+    </div>
+    <div>
+      <input
+        className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+        name="author"
+        onChange={[Function]}
+        placeholder="Enter author"
+        required={true}
+        type="text"
+        value={[]}
+      />
+    </div>
+    <div
+      className="py-2"
+    >
+      <input
+        className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+        name="journal"
+        onChange={[Function]}
+        placeholder="Enter journal"
+        required={true}
+        type="text"
+        value="d"
+      />
+    </div>
+    <div>
+      <input
+        className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+        name="year"
+        onChange={[Function]}
+        placeholder="Enter year"
+        required={true}
+        type="date"
+        value="213"
+      />
+    </div>
+    <div
+      className="py-2"
+    >
+      <input
+        className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+        name="volume"
+        onChange={[Function]}
+        placeholder="Enter volume"
+        required={true}
+        type="text"
+        value="123"
+      />
+    </div>
+    <div>
+      <input
+        className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+        data-testid="pages"
+        name="pages"
+        onChange={[Function]}
+        placeholder="Enter pages"
+        required={true}
+        type="text"
+        value="123"
+      />
+    </div>
+    <div
+      className="py-2"
+    >
+      <input
+        className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+        name="DOI"
+        onChange={[Function]}
+        placeholder="Enter DOI"
+        required={true}
+        type="text"
+        value="123"
+      />
+    </div>
+    <button
+      className="w-full rounded-xl border-2 border-gray-300 focus:outline-none   focus:border-indigo-500 text-base px-4 py-2"
+      type="submit"
+    >
+      Send
+    </button>
+  </form>
+</div>
+`;
