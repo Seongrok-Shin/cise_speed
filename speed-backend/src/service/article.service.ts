@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CreateArticleDTO } from '@dto/create-article.dto';
 import { IArticle } from '@articleInterface';
 import { Model } from 'mongoose';
-import { Logger } from '@nestjs/common/services';
+
 @Injectable()
 export class ArticleService {
   constructor(@InjectModel('Article') private articleModel: Model<IArticle>) {}
@@ -38,8 +38,8 @@ export class ArticleService {
       claim: article.claim,
       result: article.result,
       research: article.research,
-      participant: article.participant
-        }));
+      participant: article.participant,
+    }));
   }
 
   /**
@@ -48,7 +48,7 @@ export class ArticleService {
    * @param {any} anyValue:any
    * @returns {any} Article
    */
-  async searchSingleArticle(anyValue: any ){
+  async searchSingleArticle(anyValue: any) {
     const article = await this.findArticleAny(anyValue);
     return article;
   }
@@ -79,7 +79,7 @@ export class ArticleService {
    */
   private async findArticleAny(anyValue: any): Promise<IArticle[]> {
     let tempArticle: any[];
-    try{
+    try {
       tempArticle = await this.articleModel.find({
         $or: [
           { title: anyValue },
@@ -110,5 +110,4 @@ export class ArticleService {
   private isEmpty(value: any){
     return value && Object.keys(value).length === 0;
   }
-
 }

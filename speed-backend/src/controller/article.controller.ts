@@ -1,4 +1,12 @@
-import { Body, HttpStatus, Post, Get, Res, Controller, Param } from '@nestjs/common';
+import {
+  Body,
+  HttpStatus,
+  Post,
+  Get,
+  Res,
+  Controller,
+  Param,
+} from '@nestjs/common';
 import { CreateArticleDTO } from '../dto/create-article.dto';
 import { ArticleService } from '../service/article.service';
 
@@ -13,27 +21,8 @@ export class ArticleController {
    * @returns {any}: void
    */
   @Post('upload')
-  async createArticle(
-    @Res() response,
-    @Body() createArticleDto: CreateArticleDTO,
-  ) {
-    try {
-      const newArticle =
-        await this.articleService.CreateArticle(createArticleDto);
-
-      console.log(newArticle);
-
-      return response.status(HttpStatus.CREATED).json({
-        message: 'Article has successfully been created!',
-        newArticle,
-      });
-    } catch (err) {
-      return response.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: 400,
-        message: 'There was an error uploading the article',
-        error: 'Bad Request',
-      });
-    }
+  async createArticle(@Body() createArticleDto: CreateArticleDTO) {
+    return this.articleService.CreateArticle(createArticleDto);
   }
 
   /**
@@ -43,8 +32,8 @@ export class ArticleController {
    * @returns {any} Article[]
    */
   @Get('all')
-  async getArticles(@Res() response){
-    try{
+  async getArticles(@Res() response) {
+    try {
       const article = await this.articleService.getArticles();
       console.log(article);
       return response.status(HttpStatus.OK).json({
@@ -59,7 +48,7 @@ export class ArticleController {
       });
     }
   }
-  
+
   /**
    * @author @dgw7626 Hanul Rheem
    * @description: returns with signle article with keyword.
@@ -68,100 +57,95 @@ export class ArticleController {
    */
   @Get(':id')
   async getSingleArticle(@Res() response, @Param('id') title: string) {
-    try{
+    try {
       const article = await this.articleService.searchSingleArticle(title);
       console.log(article);
       return response.status(HttpStatus.OK).json({
         message: 'Article has successfully been searched!',
         article,
-      })
+      });
     } catch (err: any) {
       return response.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: 400, 
+        statusCode: 400,
         message: 'There was an error searching the article',
         error: 'Bad Request: Cant find article',
       });
     }
   }
 
-  @Get("author/:id")
-  async getArticlesByAuthor(@Res() response, @Param('id') author:string){
-    try{
+  @Get('author/:id')
+  async getArticlesByAuthor(@Res() response, @Param('id') author: string) {
+    try {
       const article = await this.articleService.searchArticleByAll({
-        authors: author
+        authors: author,
       });
       return response.status(HttpStatus.OK).json({
         message: 'Article has successfully been filtered by author name!',
         article,
-      })
-    }
-    catch (err: any) {
+      });
+    } catch (err: any) {
       return response.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: 400, 
+        statusCode: 400,
         message: 'There was an error searching the author name',
         error: 'Bad Request: Cant find author',
       });
     }
   }
 
-  @Get("year/:id")
-  async getArticlesByYear(@Res() response, @Param('id') year:number){
-    try{
+  @Get('year/:id')
+  async getArticlesByYear(@Res() response, @Param('id') year: number) {
+    try {
       const article = await this.articleService.searchArticleByAll({
-        year: year
+        year: year,
       });
       return response.status(HttpStatus.OK).json({
         message: 'Article has successfully been filtered by year!',
         article,
-      })
-    }
-    catch (err: any) {
+      });
+    } catch (err: any) {
       return response.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: 400, 
+        statusCode: 400,
         message: 'There was an error searching the year',
         error: 'Bad Request: Cant find year',
       });
     }
   }
 
-  @Get("claim/:id")
-  async getArticlesByClaim(@Res() response, @Param('id') claim:string){
-    try{
+  @Get('claim/:id')
+  async getArticlesByClaim(@Res() response, @Param('id') claim: string) {
+    try {
       const article = await this.articleService.searchArticleByAll({
-        claim: claim
+        claim: claim,
       });
       return response.status(HttpStatus.OK).json({
         message: 'Article has successfully been filtered by claim!',
         article,
-      })
-    }
-    catch (err: any) {
+      });
+    } catch (err: any) {
       return response.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: 400, 
+        statusCode: 400,
         message: 'There was an error searching the claim',
         error: 'Bad Request: Cant find claim',
       });
     }
   }
 
-  @Get("evidence/:id")
-  async getArticlesByEvidence(@Res() response, @Param('id') evidence:string){
-    try{
+  @Get('evidence/:id')
+  async getArticlesByEvidence(@Res() response, @Param('id') evidence: string) {
+    try {
       const article = await this.articleService.searchArticleByAll({
-        evidence: evidence
+        evidence: evidence,
       });
       return response.status(HttpStatus.OK).json({
         message: 'Article has successfully been filtered by evidence!',
         article,
-      })
-    }
-    catch (err: any) {
+      });
+    } catch (err: any) {
       return response.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: 400, 
+        statusCode: 400,
         message: 'There was an error searching the evidence',
         error: 'Bad Request: Cant find evidence',
       });
     }
   }
-
 }

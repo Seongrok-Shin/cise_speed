@@ -35,9 +35,9 @@ export class Article {
   @Prop({ required: true })
   result: boolean;
 
-  @Prop({ required: true})
+  @Prop({ required: true })
   evidence: string;
-  
+
   @Prop({ required: true })
   research: string;
 

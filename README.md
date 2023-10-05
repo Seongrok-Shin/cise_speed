@@ -9,13 +9,20 @@ CISE Project - Creating Software Practice Empirical Evidence Database which is c
 
  ```json
  {
-    "title": "Title of article",
-    "authors": ["Author 1", "Author 2"], 
-    "journal": "Journal", // optional
+    "title": "SDP 2",
+    "authors": [
+        "John Doe",
+        "Jane Doe"
+    ],
+    "journal": "AUT",
     "year": 2022,
-    "volume": 2, // optional
-    "pages": 200,
-    "DOI": "10.1093/ajae/aaq063"
+    "volume": 2,
+    "pages": 185,
+    "DOI": "10.1093/ajae/aaq063",
+    "claim": "Agile is better than waterfall",
+    "result": true,
+    "research": "case study",
+    "participant": "student"
  }
  ```
 

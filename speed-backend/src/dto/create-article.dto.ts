@@ -40,7 +40,7 @@ export class CreateArticleDTO {
   @IsString()
   @MaxLength(255)
   @IsNotEmpty()
-  readonly status :string;
+  readonly status: string;
 
   @IsString()
   @MaxLength(255)
@@ -49,8 +49,8 @@ export class CreateArticleDTO {
 
   @IsBoolean()
   @IsNotEmpty()
-  readonly result : boolean; 
-  
+  readonly result: boolean;
+
   @IsString()
   @MaxLength(255)
   readonly research: string;
