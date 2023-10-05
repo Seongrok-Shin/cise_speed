@@ -8,8 +8,10 @@ export interface IArticle extends Document {
   readonly volume: number;
   readonly pages: number;
   readonly DOI: string;
+  readonly status: string;
   readonly claim: string;
   readonly result: boolean;
+  readonly evidence: string;
   readonly research: string;
   readonly participant: string;
 }

@@ -9,7 +9,24 @@
     "target": "ES2021",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": "./src",
+    "paths": {
+      "@dto/*": [
+        "dto/*.ts"
+      ],
+      "@articleService": [
+        "service/article.service.ts"
+      ],
+      "@articleController": [
+        "controller/article.controller.ts"
+      ],
+      "@articleInterface": [
+        "interface/article.interface.ts"
+      ],
+      "@articleSchema": [
+        "schema/*"
+      ]
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,

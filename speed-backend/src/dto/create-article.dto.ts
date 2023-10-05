@@ -38,18 +38,24 @@ export class CreateArticleDTO {
   readonly DOI: string;
 
   @IsString()
+  @MaxLength(255)
   @IsNotEmpty()
   readonly claim: string;
+
+  @IsString()
+  @MaxLength(255)
+  @IsNotEmpty()
+  readonly evidence: string;
 
   @IsBoolean()
   @IsNotEmpty()
   readonly result: boolean;
 
   @IsString()
-  @IsNotEmpty()
+  @MaxLength(255)
   readonly research: string;
 
   @IsString()
-  @IsNotEmpty()
+  @MaxLength(255)
   readonly participant: string;
 }
