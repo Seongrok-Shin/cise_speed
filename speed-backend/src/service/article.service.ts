@@ -3,11 +3,10 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CreateArticleDTO } from '@dto/create-article.dto';
 import { IArticle } from '@articleInterface';
 import { Model } from 'mongoose';
-
+import { Logger } from '@nestjs/common/services';
 @Injectable()
 export class ArticleService {
   constructor(@InjectModel('Article') private articleModel: Model<IArticle>) {}
-
 
   /**
    * @author Logan Wood
@@ -56,11 +55,29 @@ export class ArticleService {
 
   /**
    * @author @dgw7626 Hanul Rheem
+   * @description: Searches Authors, publication year, claim and evidence results.
+   * @param {any} evidence:Record<any
+   * @param {any} any>
+   * @returns {any}
+   */
+  async searchArticleByAll(all: Record<any, any>): Promise<IArticle[]> {
+    try {
+      const articles: any[] = await this.articleModel.find(all);
+      if (this.isEmpty(articles)) {
+        throw new NotFoundException(`Could not found ${all[0]}`);
+      }
+      return articles;
+    } catch (err: any) {
+      throw new NotFoundException(`Could not found ${all[0]}`);
+    }
+  }
+  /**
+   * @author @dgw7626 Hanul Rheem
    * @description: finds the specific article with the keyword.
    * @param {any} anyValue:any
    * @returns {any} Article[]
    */
-  private async findArticleAny(anyValue: any ): Promise<IArticle[]> {
+  private async findArticleAny(anyValue: any): Promise<IArticle[]> {
     let tempArticle: any[];
     try{
       tempArticle = await this.articleModel.find({
@@ -93,4 +110,5 @@ export class ArticleService {
   private isEmpty(value: any){
     return value && Object.keys(value).length === 0;
   }
+
 }

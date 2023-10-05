@@ -71,7 +71,8 @@ describe('Controller', () => {
         claim: "fasdfsd",
         result: false,
         research: "fdafsd",
-        participant: "fasdfsd"
+        participant: "fasdfsd",
+        evidence: "please"
       };
 
       const response = await request(app.getHttpServer())

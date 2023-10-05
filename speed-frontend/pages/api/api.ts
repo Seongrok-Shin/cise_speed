@@ -81,3 +81,92 @@ export async function GetSingleArticle(anyValue: string){
         throw error;
     }
 }
+
+export async function GetArticleYear(year: number){
+    try{
+        const response :object | void = await axios.get( `http://localhost:5000/article/year/${year}`,
+        {
+            headers: {
+                "Access-Control-Allow-Origin": "", 
+                "Access-Control-Allow-Methods": "GET", 
+                "Access-Control-Allow-Headers": "Content-Type", 
+              }
+        }).then((data:any) => {
+            alert(JSON.stringify(data.data));
+            console.log(JSON.stringify(data.data))
+          });
+          return response;
+    }
+    catch (error) {
+        alert(error);
+        console.error(`error${error}`);
+        throw error;
+    }
+}
+
+export async function GetArticleAuthor(author: string){
+    try{
+        const response :object | void = await axios.get( `http://localhost:5000/article/author/${author}`,
+        {
+            headers: {
+                "Access-Control-Allow-Origin": "", 
+                "Access-Control-Allow-Methods": "GET", 
+                "Access-Control-Allow-Headers": "Content-Type", 
+              }
+        }).then((data:any) => {
+            alert(JSON.stringify(data.data));
+            console.log(JSON.stringify(data.data))
+          });
+          return response;
+    }
+    catch (error) {
+        alert(error);
+        console.error(`error${error}`);
+        throw error;
+    }
+}
+
+export async function GetArticleClaim(claim: string){
+    try{
+        const response :object | void = await axios.get( `http://localhost:5000/article/claim/${claim}`,
+        {
+            headers: {
+                "Access-Control-Allow-Origin": "", 
+                "Access-Control-Allow-Methods": "GET", 
+                "Access-Control-Allow-Headers": "Content-Type", 
+              }
+        }).then((data:any) => {
+            alert(JSON.stringify(data.data));
+            console.log(JSON.stringify(data.data))
+          });
+          return response;
+    }
+    catch (error) {
+        alert(error);
+        console.error(`error${error}`);
+        throw error;
+    }
+}
+
+export async function GetArticleEvidence(evidence: string){
+    try{
+        const response :object | void = await axios.get( `http://localhost:5000/article/evidence/${evidence}`,
+        {
+            headers: {
+                "Access-Control-Allow-Origin": "", 
+                "Access-Control-Allow-Methods": "GET", 
+                "Access-Control-Allow-Headers": "Content-Type", 
+              }
+        }).then((data:any) => {
+            alert(JSON.stringify(data.data));
+            console.log(JSON.stringify(data.data))
+          });
+          return response;
+    }
+    catch (error) {
+        alert(error);
+        console.error(`error${error}`);
+        throw error;
+    }
+}
+

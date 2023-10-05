@@ -90,7 +90,8 @@ describe('Controller', () => {
         claim: "fasdfsd",
         result: false,
         research: "fdafsd",
-        participant: "fasdfsd"
+        participant: "fasdfsd",
+        evidence: "please"
       };
 
 

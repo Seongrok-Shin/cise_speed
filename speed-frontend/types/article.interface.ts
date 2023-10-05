@@ -9,6 +9,7 @@ export interface Article{
     status: string;
     claim: string;
     result: boolean; 
+    evidence: string;
     research: string;
     participant: string;
 }

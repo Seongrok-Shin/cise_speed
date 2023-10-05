@@ -11,6 +11,7 @@ export interface IArticle extends Document {
   readonly status: string;
   readonly claim: string;
   readonly result: boolean; 
+  readonly evidence:string;
   readonly research: string;
   readonly participant: string;
 }

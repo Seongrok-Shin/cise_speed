@@ -1,6 +1,6 @@
 'use client';
 import Image from "next/image";
-import { CreateArticle, GetArticles, GetSingleArticle } from "../../pages/api/api";
+import { CreateArticle, GetArticleAuthor, GetArticleClaim, GetArticleEvidence, GetArticleYear, GetArticles, GetSingleArticle } from "../../pages/api/api";
 import { Article } from "../../types/article.interface";
 export default function Home() {
   //Example use case of api calls.
@@ -19,7 +19,7 @@ export default function Home() {
       "result": false,
       "research": "fdafsd",
       "participant": "fasdfsd",
-
+      "evidence": "please"
     }
     console.log(CreateArticle(article));
   }
@@ -33,6 +33,14 @@ export default function Home() {
         <input style={{ background: "blue" }} type="button" value="Search All!" onClick={GetArticles} />
         <br></br>
         <input style={{ background: "green" }} type="button" value="Get Article Title of article!" onClick={() => { GetSingleArticle("Cat") }} />
+        <br></br>
+        <input style={{ background: "white" }} type="button" value="Author" onClick={() => { GetArticleAuthor("John Doe") }} />
+        <br></br>
+        <input style={{ background: "white" }} type="button" value="Year" onClick={() => { GetArticleYear(2022) }} />
+        <br></br>
+        <input style={{ background: "white" }} type="button" value="Claim" onClick={() => { GetArticleClaim("Agile is better than waterfall") }} />
+        <br></br>
+        <input style={{ background: "white" }} type="button" value="Evidence" onClick={() => { GetArticleEvidence("please") }} />
       </div>
     </main>
   );
