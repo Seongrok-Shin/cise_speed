@@ -1,4 +1,4 @@
-import { CreateArticleDTO } from 'src/dto/create-article.dto';
+import { CreateArticleDTO } from '../dto/create-article.dto';
 
 export const ArticleDTOStub = (): CreateArticleDTO => {
   return {
@@ -10,6 +10,7 @@ export const ArticleDTOStub = (): CreateArticleDTO => {
     pages: 185,
     DOI: '10.1093/ajae/aaq063',
     claim: 'Agile is better than waterfall',
+    evidence: 'Meowww',
     result: true,
     research: 'case study',
     participant: 'student',

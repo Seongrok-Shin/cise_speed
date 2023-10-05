@@ -40,12 +40,12 @@ export class CreateArticleDTO {
   @IsString()
   @MaxLength(255)
   @IsNotEmpty()
-  readonly status: string;
+  readonly claim: string;
 
   @IsString()
   @MaxLength(255)
   @IsNotEmpty()
-  readonly claim: string;
+  readonly evidence: string;
 
   @IsBoolean()
   @IsNotEmpty()
