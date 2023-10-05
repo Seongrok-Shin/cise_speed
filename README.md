@@ -20,6 +20,7 @@ CISE Project - Creating Software Practice Empirical Evidence Database which is c
     "pages": 185,
     "DOI": "10.1093/ajae/aaq063",
     "claim": "Agile is better than waterfall",
+    "evidence": "Teams work better in an agile environment",
     "result": true,
     "research": "case study",
     "participant": "student"
