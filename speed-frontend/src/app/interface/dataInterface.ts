@@ -1,11 +1,17 @@
+import { StringLiteral } from "typescript";
+
 interface DataInterface {
   title: string;
-  author: [];
+  authors: string[];
   journal: string;
-  year: string;
-  volume: string;
-  pages: string;
+  year: number;
+  volume: number;
+  pages: number;
   DOI: string;
+  claim: string;
+  evidence: string;
+  research: string;
+  participant: string;
 }
 
 export default DataInterface;

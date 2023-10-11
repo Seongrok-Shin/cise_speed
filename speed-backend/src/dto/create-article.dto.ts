@@ -47,10 +47,6 @@ export class CreateArticleDTO {
   @IsNotEmpty()
   readonly evidence: string;
 
-  @IsBoolean()
-  @IsNotEmpty()
-  readonly result: boolean;
-
   @IsString()
   @MaxLength(255)
   readonly research: string;

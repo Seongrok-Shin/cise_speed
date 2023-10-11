@@ -6,9 +6,7 @@ export interface Article{
     volume: number;
     pages: number;
     DOI: string;
-    status: string;
     claim: string;
-    result: boolean; 
     evidence: string;
     research: string;
     participant: string;

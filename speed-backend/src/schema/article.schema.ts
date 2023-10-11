@@ -32,7 +32,7 @@ export class Article {
   @Prop({ required: true })
   claim: string;
 
-  @Prop({ required: true })
+  @Prop({ default: false })
   result: boolean;
 
   @Prop({ required: true })

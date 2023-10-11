@@ -11,7 +11,6 @@ export const ArticleDTOStub = (): CreateArticleDTO => {
     DOI: '10.1093/ajae/aaq063',
     claim: 'Agile is better than waterfall',
     evidence: 'Meowww',
-    result: true,
     research: 'case study',
     participant: 'student',
   };

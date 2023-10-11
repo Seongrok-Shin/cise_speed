@@ -28,11 +28,11 @@ function Form(handleChange: any, handleSubmit: any, data: DataInterface) {
         </div>
         <div>
           <input
-            name="author"
+            name="authors"
             type="text"
             placeholder="Enter author"
             onChange={handleChange}
-            value={data.author}
+            value={data.authors}
             className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
             required
           />
@@ -51,7 +51,7 @@ function Form(handleChange: any, handleSubmit: any, data: DataInterface) {
         <div>
           <input
             name="year"
-            type="date"
+            type="number"
             placeholder="Enter year"
             onChange={handleChange}
             value={data.year}
@@ -62,7 +62,7 @@ function Form(handleChange: any, handleSubmit: any, data: DataInterface) {
         <div className="py-2">
           <input
             name="volume"
-            type="text"
+            type="number"
             placeholder="Enter volume"
             onChange={handleChange}
             value={data.volume}
@@ -73,7 +73,7 @@ function Form(handleChange: any, handleSubmit: any, data: DataInterface) {
         <div>
           <input
             name="pages"
-            type="text"
+            type="number"
             placeholder="Enter pages"
             onChange={handleChange}
             value={data.pages}
@@ -89,6 +89,50 @@ function Form(handleChange: any, handleSubmit: any, data: DataInterface) {
             placeholder="Enter DOI"
             onChange={handleChange}
             value={data.DOI}
+            className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+            required
+          />
+        </div>
+        <div className="py-2">
+          <input
+            name="claim"
+            type="text"
+            placeholder="Enter claim"
+            onChange={handleChange}
+            value={data.claim}
+            className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+            required
+          />
+        <div className="py-2">
+        </div>
+          <input
+            name="evidence"
+            type="text"
+            placeholder="Enter evidence"
+            onChange={handleChange}
+            value={data.evidence}
+            className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+            required
+          />
+        <div className="py-2">
+        </div>
+          <input
+            name="research"
+            type="text"
+            placeholder="Enter research type"
+            onChange={handleChange}
+            value={data.research}
+            className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+            required
+          />
+        <div className="py-2">
+        </div>
+          <input
+            name="participant"
+            type="text"
+            placeholder="Enter participant type"
+            onChange={handleChange}
+            value={data.participant}
             className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
             required
           />

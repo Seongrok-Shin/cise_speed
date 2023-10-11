@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import DataInterface from "../interface/dataInterface";
 import Form from "../component/submitForm";
+import { CreateArticle } from "../../../pages/api/api";
+import { Article } from "../../../types/article.interface";
 
 /**
  * @author @Seongrok-Shin
@@ -11,14 +13,18 @@ import Form from "../component/submitForm";
  */
 
 const SubmitPage = () => {
-  const [data, setData] = useState<DataInterface>({
+  const [data, setData] = useState<Article>({
     title: "",
-    author: [],
+    authors: [],
     journal: "",
-    year: "",
-    volume: "",
-    pages: "",
+    year: 0,
+    volume: 0,
+    pages: 0,
     DOI: "",
+    claim: "",
+    evidence: "",
+    research: "",
+    participant: ""    
   });
 
   const [loading, setLoading] = useState(false);
@@ -35,8 +41,7 @@ const SubmitPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      console.log(data);
-      const res = await axios.post("/api/submit", data);
+      const res = await CreateArticle(data);
       console.log(res);
     } catch (err: any) {
       setError(err);
