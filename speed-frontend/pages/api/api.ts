@@ -8,7 +8,7 @@ import { Article } from "../../types/article.interface";
  */
 export async function CreateArticle(article:Article){
     try{
-        const response = await axios.post(`http://localhost:5000/article/upload/`, article,{
+        const response = await axios.post(`http://localhost:8080/article/upload/`, article,{
             headers: {
               "Access-Control-Allow-Origin": "", 
               "Access-Control-Allow-Methods": "POST", 
