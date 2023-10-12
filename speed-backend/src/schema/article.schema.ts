@@ -43,6 +43,12 @@ export class Article {
 
   @Prop({ required: true })
   participant: string;
+
+  @Prop({ required: true, default: false, type: Boolean })
+  is_apporved: {
+    isModerator: boolean;
+    isAnalyst: boolean;
+  };
 }
 
 export const ArticleSchema = SchemaFactory.createForClass(Article);

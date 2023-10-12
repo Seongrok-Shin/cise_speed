@@ -42,8 +42,7 @@ export async function GetArticles(){
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
         }).then((data:any) => {
-            alert(JSON.stringify(data.data));
-            console.log(JSON.stringify(data.data));
+            return data.data;
         });
         return response;
     }
@@ -70,8 +69,7 @@ export async function GetSingleArticle(anyValue: string){
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
         }).then((data:any) => {
-            alert(JSON.stringify(data.data));
-            console.log(JSON.stringify(data.data))
+            return data.data;
           });
           return response;
     }
@@ -170,3 +168,20 @@ export async function GetArticleEvidence(evidence: string){
     }
 }
 
+export async function GetSEMethods(){
+    try{
+        const response : Array<string> | void = await axios.get(`http://localhost:5000/article/methods/SE`,{
+            headers: {
+                "Access-Control-Allow-Origin": "", 
+                "Access-Control-Allow-Methods": "GET", 
+                "Access-Control-Allow-Headers": "Content-Type", 
+              }
+        }).then((data:any) => { 
+            return data.data;
+        });
+        return response;
+    }catch(error){
+        console.error(`error: ${error}`);
+        throw error;
+    }
+}

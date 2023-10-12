@@ -6,6 +6,7 @@ import {
   Res,
   Controller,
   Param,
+  Logger,
 } from '@nestjs/common';
 import { CreateArticleDTO } from '../dto/create-article.dto';
 import { ArticleService } from '../service/article.service';
@@ -35,7 +36,6 @@ export class ArticleController {
   async getArticles(@Res() response) {
     try {
       const article = await this.articleService.getArticles();
-      console.log(article);
       return response.status(HttpStatus.OK).json({
         message: 'Article has successfully been searched!',
         article,
@@ -59,7 +59,6 @@ export class ArticleController {
   async getSingleArticle(@Res() response, @Param('id') title: string) {
     try {
       const article = await this.articleService.searchSingleArticle(title);
-      console.log(article);
       return response.status(HttpStatus.OK).json({
         message: 'Article has successfully been searched!',
         article,
@@ -145,6 +144,24 @@ export class ArticleController {
         statusCode: 400,
         message: 'There was an error searching the evidence',
         error: 'Bad Request: Cant find evidence',
+      });
+    }
+  }
+
+
+  @Get('methods/SE')
+  async getAllMethods(@Res() response) {
+    try {
+      const methods = await this.articleService.getSEMethods();
+      return response.status(HttpStatus.OK).json({
+        message: 'Article has successfully obtained SE methods.',
+        methods,
+      });
+    } catch (err: any) {
+      return response.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: 400,
+        message: 'There was an error searching the methods',
+        error: 'Bad Request: Cant get the methods',
       });
     }
   }

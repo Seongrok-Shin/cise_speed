@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException,Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateArticleDTO } from '@dto/create-article.dto';
 import { IArticle } from '@articleInterface';
@@ -24,7 +24,7 @@ export class ArticleService {
    * @description: returns all available articles
    * @returns {any} Aritcle[]
    */
-  async getArticles(){
+  async getArticles() {
     const articles = await this.articleModel.find().exec();
     return articles.map((article: IArticle) => ({
       title: article.title,
@@ -71,6 +71,25 @@ export class ArticleService {
       throw new NotFoundException(`Could not found ${all[0]}`);
     }
   }
+
+  async getSEMethods(): Promise<Array<string>> {
+    try {
+      const methods: Array<string> = [
+        'Mob Programming',
+        'Pair Programming',
+        'Test Driven Development (TDD)',
+        'Agile Software Development',
+        'Continuous Integration (CI)',
+        'Publication Year',
+        'Others',
+      ];
+      return methods;
+    } catch (err: any) {
+      throw new NotFoundException(`couldn't get the SE methods ${err}`);
+    }
+  }
+
+
   /**
    * @author @dgw7626 Hanul Rheem
    * @description: finds the specific article with the keyword.
@@ -107,7 +126,7 @@ export class ArticleService {
    * @param {any} value:any
    * @returns {any} : void
    */
-  private isEmpty(value: any){
+  private isEmpty(value: any) {
     return value && Object.keys(value).length === 0;
   }
 }

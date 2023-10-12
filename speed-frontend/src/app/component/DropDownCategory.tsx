@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { GetSEMethods } from "../../../pages/api/api";
 
 const DropdownFilter = () => {
   const [filter, setFilter] = useState("");
+  const [methods, setMethods] = useState<Array<string>>([]);
+  useEffect(() => {
+    GetSEMethods().then((value: any) => { setMethods(value.methods) }) as Promise<Array<string> | void>;
+    console.log("hello");
+  }, [])
 
   const handleChangeFilter = (event: any) => {
     setFilter(event.target.value);
@@ -15,9 +21,7 @@ const DropdownFilter = () => {
       value={filter}
       onChange={handleChangeFilter}
     >
-      <option value="all">Filter SE Method</option>
-      <option value="tdd">TDD</option>
-      <option value="date">etc</option>
+      <>{methods.map((category: any, index: number) => { return <option value={category} key={index}>{category}</option> })}</>
     </select>
   );
 };

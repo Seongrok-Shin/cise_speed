@@ -3,7 +3,8 @@ import { useState } from "react";
 import Header from "../component/Header";
 import { useRouter } from "next/navigation";
 import DropdownFilter from "../component/DropDownCategory";
-import axios from "axios";
+import { GetArticles, GetSingleArticle } from "../../../pages/api/api";
+import DropdownYearFilter from "../component/DropDownPublicationYear";
 export default function SearchView() {
   /**
    * @author @Seongrok-Shin
@@ -32,21 +33,14 @@ export default function SearchView() {
   const handleSearchButton = (event: any) => {
     event.preventDefault();
 
-    // TODO: fetch data from backend
+    // TODO: fetch data from backend setSearchResult(response.data)
     console.log(search);
-
-    axios
-      .get(`http://localhost:5000/article/search/${search}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        setSearchResult(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (search !== "" || null) {
+      GetSingleArticle(search).then((response: any) => { setSearchResult(response.article) });
+    }
+    else {
+      GetArticles().then((response: any) => { setSearchResult(response.article) });
+    }
   };
 
   return (
@@ -60,6 +54,7 @@ export default function SearchView() {
               <div className="flex flex-row">
                 <div className="p-1">
                   <DropdownFilter />
+                  <DropdownYearFilter />
                 </div>
                 <div className="p-1">
                   <input
@@ -93,31 +88,31 @@ export default function SearchView() {
               </div>
             </form>
           </div>
-          <div className="flex flex-col">
+          <div className=" text-left flex flex-col justify-between items-center">
             {searchResult.length >= 0 && (
-              <table className="flex flex-col justify-between items-center">
+              <table className="border-solid border-blue-700 border-2">
                 <thead>
                   <tr>
-                    <th className="px-3">Title</th>
-                    <th className="px-3">Author/s</th>
-                    <th className="px-3">Publication Year</th>
-                    <th className="px-3">Source</th>
-                    <th className="px-3">DOI</th>
-                    <th className="px-3">Claim</th>
-                    <th className="px-3">Evidence</th>
+                    <th className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">Title</th>
+                    <th className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">Author/s</th>
+                    <th className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">Publication Year</th>
+                    <th className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">Source</th>
+                    <th className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">DOI</th>
+                    <th className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">Claim</th>
+                    <th className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">Evidence</th>
                   </tr>
                 </thead>
                 <tbody>
                   {searchResult.map((result: any, i): any => {
                     return (
                       <tr key={i}>
-                        <td>{result.title}</td>
-                        <td>{result.authors}</td>
-                        <td>{result.publicationYear}</td>
-                        <td>{result.source}</td>
-                        <td>{result.doi}</td>
-                        <td>{result.claim}</td>
-                        <td>{result.evidence}</td>
+                        <td className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">{result.title}</td>
+                        <td className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">{result.authors}</td>
+                        <td className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">{result.year}</td>
+                        <td className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">{result.journal}</td>
+                        <td className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">{result.doi}</td>
+                        <td className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">{result.claim}</td>
+                        <td className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">{result.evidence}</td>
                       </tr>
                     );
                   })}

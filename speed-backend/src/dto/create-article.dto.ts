@@ -58,4 +58,11 @@ export class CreateArticleDTO {
   @IsString()
   @MaxLength(255)
   readonly participant: string;
+
+  @IsBoolean()
+  @IsNotEmpty()
+  readonly is_approved: {
+    isModerator: boolean;
+    isAnalyst: boolean;
+  };
 }
