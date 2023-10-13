@@ -14,9 +14,11 @@ interface IArticle {
     participant: string;
     se_practice: string;
     is_approved: {
-    isModerator: boolean;
-    isAnalyst: boolean;
-  };
+      isModerator: boolean;
+      isModRejected: boolean;
+      isAnalyst: boolean;
+      isAnaRejected: boolean;
+    };
 }
 
 export default IArticle;

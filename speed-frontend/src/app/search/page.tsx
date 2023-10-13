@@ -1,27 +1,25 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../component/Header";
 import { useRouter } from "next/navigation";
 import DropdownFilter from "../component/DropDownCategory";
 import { GetArticleByPracticeSE, GetArticleYear, GetArticles, GetSingleArticle } from "../../../pages/api/api";
 import DropdownYearFilter from "../component/DropDownPublicationYear";
 export default function SearchView() {
-  /**
-   * @author @Seongrok-Shin
-   * Description
-   * @returns {any}
-   */
-
   const router = useRouter();
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
+  const tableStyle: string = "w-32 border-solid border-blue-700 border-2 pr-2 pl-2 bg-zinc-50 ";
+  const searchStyle: string = "rounded-xl border-2 border-gray-300 focus:outline-none focus: border - black text - base font - medium text - gray - 700 hover: bg-gray-100   bg-zinc-50";
   const handleAddArticle = (event: any) => {
     event.preventDefault();
     router.push("/submit");
   };
-
+  useEffect(() => {
+    document.body.style.backgroundColor = "#0332CB";
+  }, []);
   const handleChangeSearch = (event: any) => {
     setSearch(event.target.value);
   };
@@ -71,8 +69,7 @@ export default function SearchView() {
                 </div>
                 <div className="p-1">
                   <input
-                    className="rounded-xl border-2 border-gray-300 focus:outline-none
-                    focus:border-black text-base font-medium text-gray-700 hover:bg-gray-100"
+                    className={searchStyle}
                     type="text"
                     name="search"
                     value={search}
@@ -82,8 +79,7 @@ export default function SearchView() {
                 </div>
                 <div className="p-1">
                   <button
-                    className="rounded-xl border-2 border-gray-300 focus:outline-none
-                  focus:border-black text-base font-medium text-gray-700 hover:bg-gray-100"
+                    className={searchStyle}
                     type="submit"
                   >
                     Search
@@ -91,8 +87,7 @@ export default function SearchView() {
                 </div>
                 <div className="p-1">
                   <button
-                    className="rounded-xl border-2 border-gray-300 focus:outline-none
-                  focus:border-black text-base font-medium text-gray-700 hover:bg-gray-100"
+                    className={searchStyle}
                     onClick={handleAddArticle}
                   >
                     Add Article
@@ -106,26 +101,26 @@ export default function SearchView() {
               <table className="border-solid border-blue-700 border-2">
                 <thead>
                   <tr>
-                    <th className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">Title</th>
-                    <th className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">Author/s</th>
-                    <th className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">Publication Year</th>
-                    <th className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">Source</th>
-                    <th className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">DOI</th>
-                    <th className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">Claim</th>
-                    <th className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">Evidence</th>
+                    <th className={tableStyle}>Title</th>
+                    <th className={tableStyle}>Author/s</th>
+                    <th className={tableStyle}>Publication Year</th>
+                    <th className={tableStyle}>Source</th>
+                    <th className={tableStyle}>DOI</th>
+                    <th className={tableStyle}>Claim</th>
+                    <th className={tableStyle}>Evidence</th>
                   </tr>
                 </thead>
                 <tbody>
                   {searchResult.map((result: any, i): any => {
                     return (
                       <tr key={i}>
-                        <td className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">{result.title}</td>
-                        <td className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">{result.authors}</td>
-                        <td className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">{result.year}</td>
-                        <td className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">{result.journal}</td>
-                        <td className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">{result.doi}</td>
-                        <td className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">{result.claim}</td>
-                        <td className="w-32 border-solid border-blue-700 border-2 pr-2 pl-2">{result.evidence}</td>
+                        <td className={tableStyle}>{result.title}</td>
+                        <td className={tableStyle}>{result.authors}</td>
+                        <td className={tableStyle}>{result.year}</td>
+                        <td className={tableStyle}>{result.journal}</td>
+                        <td className={tableStyle}>{result.doi}</td>
+                        <td className={tableStyle}>{result.claim}</td>
+                        <td className={tableStyle}>{result.evidence}</td>
                       </tr>
                     );
                   })}

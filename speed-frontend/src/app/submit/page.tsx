@@ -1,10 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import Form from "../component/submitForm";
 import IArticle from "../interface/IArticle";
 import { CreateArticle } from "../../../pages/api/api";
-import { Article } from "../../../types/article.interface";
+
 
 /**
  * @author @Seongrok-Shin
@@ -13,7 +12,11 @@ import { Article } from "../../../types/article.interface";
  */
 
 const SubmitPage = () => {
-  const [data, setData] = useState<Article>({
+  useEffect(() => {
+    document.body.style.backgroundColor = "#0332CB";
+  }, [])
+
+  const [data, setData] = useState<IArticle>({
     title: '',
     authors: [],
     journal: '',
@@ -27,10 +30,12 @@ const SubmitPage = () => {
     evidence: '',
     research: '',
     participant: '',
-    se_practice: 'Mom Programming',
+    se_practice: 'Mob Programming',
     is_approved: {
       isModerator: false,
       isAnalyst: false,
+      isAnaRejected: false,
+      isModRejected: false,
     }
   });
 

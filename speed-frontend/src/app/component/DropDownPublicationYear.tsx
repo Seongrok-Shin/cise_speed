@@ -8,14 +8,12 @@ const DropdownYearFilter = ({ dropDownYearFilter }: any) => {
     const [sortedYear, setSortedYear] = useState<Array<void | number>>([]);
     useEffect(() => {
         if (sortedYear && Object.keys(sortedYear).length !== 0) {
-            console.log("empty");
             return;
         }
         const fetchArticles = async () => {
             await GetArticles().then((response: any,) => { setArticles(response.article) });
             articles.map((response: any) => { years.push(response.year) });
             setSortedYear(years.filter((value: any, index: number) => years.indexOf(value) === index));
-            console.log(years);
         }
         fetchArticles();
     }, [sortedYear]);

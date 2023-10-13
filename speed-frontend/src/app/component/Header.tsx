@@ -21,29 +21,38 @@ const Header = () => {
   const AnalystPage = () => {
     router.push("/analyst");
   };
+  const AdminPage = () => {
+    router.push("/admin");
+  };
   return (
     <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center hover:text-black">
       <ul className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-        <li className="mr-5 text-black hover:text-gray-900" onClick={HomePage}>
-          Home
+        <li className="mr-5 text-black hover:text-gray-900 text-white" onClick={HomePage}>
+          Speed Database
         </li>
         <li
-          className="mr-5 text-black hover:text-gray-900"
+          className="mr-5 text-black hover:text-gray-900 text-white"
           onClick={SearchPage}
         >
-          Search View
+          Search Article
         </li>
         <li
-          className="mr-5 text-black hover:text-gray-900"
+          className="mr-5 text-black hover:text-gray-900 text-white"
           onClick={ModeratorPage}
         >
-          Moderator View
+          Moderator
         </li>
         <li
-          className="mr-5 text-black hover:text-gray-900"
+          className="mr-5 text-black hover:text-gray-900 text-white"
           onClick={AnalystPage}
         >
-          Analyst View
+          Analysis
+        </li>
+        <li
+          className="mr-5 text-black hover:text-gray-900 text-white"
+          onClick={AdminPage}
+        >
+          Admin
         </li>
       </ul>
     </div>

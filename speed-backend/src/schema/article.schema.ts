@@ -47,10 +47,21 @@ export class Article {
   @Prop({ required: true, default: '', type: String })
   se_practice: string;
 
-  @Prop({ required: false, type: Object })
-  is_apporved: {
+  @Prop({
+    required: true,
+    type: Object,
+    default: {
+      isModerator: false,
+      isAnalyst: false,
+      isModRejected: false,
+      isAnaRejected: false,
+    },
+  })
+  is_approved: {
     isModerator: boolean;
+    isModRejected: boolean;
     isAnalyst: boolean;
+    isAnaRejected: boolean;
   };
 }
 

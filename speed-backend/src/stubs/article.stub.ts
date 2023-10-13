@@ -17,7 +17,9 @@ export const ArticleDTOStub = (): CreateArticleDTO => {
     se_practice: '',
     is_approved: {
       isModerator: false,
+      isModRejected: false,
       isAnalyst: false,
+      isAnaRejected: false,
     },
   };
 };

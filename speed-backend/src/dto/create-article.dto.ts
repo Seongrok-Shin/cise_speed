@@ -9,6 +9,7 @@ import {
 } from 'class-validator';
 
 export class CreateArticleDTO {
+  
   @IsString()
   @MaxLength(30)
   @IsNotEmpty()
@@ -66,8 +67,11 @@ export class CreateArticleDTO {
   readonly se_practice: string;
 
   @IsObject()
+  @IsNotEmpty()
   readonly is_approved: {
     isModerator: boolean;
+    isModRejected: boolean;
     isAnalyst: boolean;
+    isAnaRejected: boolean;
   };
 }

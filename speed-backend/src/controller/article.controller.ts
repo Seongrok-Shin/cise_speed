@@ -7,9 +7,12 @@ import {
   Controller,
   Param,
   Logger,
+  Patch,
+  Delete,
 } from '@nestjs/common';
 import { CreateArticleDTO } from '../dto/create-article.dto';
 import { ArticleService } from '../service/article.service';
+import { UpdatedArticleDTO } from '../dto/updated-article.dto';
 
 @Controller('article')
 export class ArticleController {
@@ -44,7 +47,7 @@ export class ArticleController {
       return response.status(HttpStatus.BAD_REQUEST).json({
         statusCode: 400,
         message: 'There was an error searching the articles',
-        error: 'Bad Request: Cant find articles',
+        error: `Bad Request: Cant find articles ${err}`,
       });
     }
   }
@@ -68,6 +71,48 @@ export class ArticleController {
         statusCode: 400,
         message: 'There was an error searching the article',
         error: 'Bad Request: Cant find article',
+      });
+    }
+  }
+
+  @Delete('delete/:id')
+  async deleteArticle(@Res() response, @Param('id') id: string){
+    try {
+      const article = this.articleService.deleteArticleById(id);
+      return response.status(HttpStatus.OK).json({
+        message: `Article has successfully been deleted!`,
+        article,
+      });
+    } catch (err: any) {
+      return response.status(HttpStatus.NOT_FOUND).json({
+        statusCode: 404,
+        message: 'There was an error deleting the article',
+        error: `Bad Request: Cant find article ${err}`,
+      });
+    }
+  }
+
+  @Patch('update/:id')
+  async updateArticle(
+    @Res() response,
+    @Param('id') id: string,
+    @Body() updatedArticle: UpdatedArticleDTO,
+  ) {
+    try {
+      const article = this.articleService.updateArticleApproval(
+        id,
+        updatedArticle.is_approved,
+      );
+      return response.status(HttpStatus.OK).json({
+        message: `Article has successfully been filtered by software engineering practice method!`,
+        article,
+      });
+    } catch (err: any) {
+      return response.status(HttpStatus.NOT_FOUND).json({
+        statusCode: 404,
+        message:
+          'There was an error searching the software engineering practice method',
+        error: `Bad Request: Cant find se practice method ${err}`,
       });
     }
   }

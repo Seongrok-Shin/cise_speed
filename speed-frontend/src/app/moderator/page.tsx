@@ -1,15 +1,60 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Article } from "../../../types/article.interface";
 import Header from "../component/Header";
+import { GetArticles, UpdateArticleApproval } from "../../../pages/api/api";
+import IArticle from "../interface/IArticle";
 export default function ModeratorView() {
-  const [search, setSearch] = useState("");
-  const [modeQueue, setModQueue] = useState<any>([]);
-  const tableStyle: string = "w-32 border-solid border-blue-700 border-2 pr-2 pl-2";
-  useEffect(() => {
+  const [articles, setArticles] = useState<any>([]);
+  const [modeQueue, setModQueue] = useState<any[]>([]);
+  const tableStyle: string = "w-32 border-solid border-blue-700 border-2 pr-2 pl-2  bg-zinc-50";
+  const buttonStyle: string = "rounded-xl border-2 border-gray-300 focus:outline-none focus:border-black text-base font-medium text-gray-700 hover:bg-gray-100  bg-zinc-50";
 
-  });
+  useEffect(() => {
+    document.body.style.backgroundColor = "#0332CB";
+    if (modeQueue.length === 0) { // Check if modeQueue is empty
+      GetArticles().then((response: any) => {
+        setArticles(response.article);
+        // Create a filtered array and set it to modeQueue
+        const filteredArticles = response.article.filter(
+          (article: IArticle) => !article.is_approved.isModerator && !article.is_approved.isModRejected
+        );
+        setModQueue(filteredArticles);
+      });
+    }
+  }, []);
+  useEffect(() => {
+    if (modeQueue.length > 0) {
+      console.log('modeQueue has changed:', modeQueue);
+    }
+  }, [modeQueue])
+  function modAccept(id: string) {
+    const accepted = {
+      is_approved: {
+        isModerator: true,
+        isModRejected: false,
+        isAnalyst: false,
+        isAnaRejected: false,
+      }
+    }
+    UpdateArticleApproval(id, accepted);
+    const updatedMod = modeQueue.filter((item: any) => item.id !== id);
+    setModQueue(updatedMod);
+  }
+
+  function modReject(id: string) {
+    const rejected = {
+      is_approved: {
+        isModerator: true,
+        isModRejected: true,
+        isAnalyst: false,
+        isAnaRejected: false,
+      }
+    }
+    UpdateArticleApproval(id, rejected);
+    const updatedMod = modeQueue.filter((item: any) => item.id !== id);
+    setModQueue(updatedMod);
+  }
 
   return (
     <>
@@ -42,8 +87,8 @@ export default function ModeratorView() {
                       <td className={tableStyle}>{result.doi}</td>
                       <td className={tableStyle}>{result.claim}</td>
                       <td className={tableStyle}>{result.evidence}</td>
-                      <td className={tableStyle}><input type="button" /></td>
-                      <td className={tableStyle}><input type="button" /></td>
+                      <td className={tableStyle}><input className={buttonStyle} type="button" value="Accept" onClick={() => modAccept(result.id)} /></td>
+                      <td className={tableStyle}><input className={buttonStyle} type="button" value="Deny" onClick={() => modReject(result.id)} /></td>
                     </tr>
                   );
                 })}

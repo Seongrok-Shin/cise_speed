@@ -29,6 +29,8 @@ describe("Form", () => {
     is_approved: {
       isModerator: false,
       isAnalyst: false,
+      isAnaRejected: false,
+      isModRejected: false,
     }
     };
     const form = Form(handleChnage, handleSubmit, data);
