@@ -44,7 +44,10 @@ export class Article {
   @Prop({ required: true })
   participant: string;
 
-  @Prop({ required: true, default: false, type: Boolean })
+  @Prop({ required: true, default: '', type: String })
+  se_practice: string;
+
+  @Prop({ required: false, type: Object })
   is_apporved: {
     isModerator: boolean;
     isAnalyst: boolean;

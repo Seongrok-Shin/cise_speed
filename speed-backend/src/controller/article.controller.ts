@@ -72,6 +72,27 @@ export class ArticleController {
     }
   }
 
+  @Get('methods/se_practice/:id')
+  async getPracticeMethods(@Res() response, @Param('id') practice: string) {
+    try {
+      const article = await this.articleService.searchArticleByAll({
+        se_practice: practice,
+      });
+      return response.status(HttpStatus.OK).json({
+        message:
+          'Article has successfully been filtered by software engineering practice method!',
+        article,
+      });
+    } catch (err: any) {
+      return response.status(HttpStatus.NOT_FOUND).json({
+        statusCode: 404,
+        message:
+          'There was an error searching the software engineering practice method',
+        error: 'Bad Request: Cant find se practice method',
+      });
+    }
+  }
+
   @Get('author/:id')
   async getArticlesByAuthor(@Res() response, @Param('id') author: string) {
     try {

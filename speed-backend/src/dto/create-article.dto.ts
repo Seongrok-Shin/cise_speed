@@ -5,6 +5,7 @@ import {
   IsArray,
   IsNumber,
   IsBoolean,
+  IsObject,
 } from 'class-validator';
 
 export class CreateArticleDTO {
@@ -59,8 +60,12 @@ export class CreateArticleDTO {
   @MaxLength(255)
   readonly participant: string;
 
-  @IsBoolean()
+  @IsString()
+  @MaxLength(255)
   @IsNotEmpty()
+  readonly se_practice: string;
+
+  @IsObject()
   readonly is_approved: {
     isModerator: boolean;
     isAnalyst: boolean;

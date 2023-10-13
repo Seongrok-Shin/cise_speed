@@ -1,4 +1,4 @@
-export interface Article{
+interface IArticle {
     title: string;
     authors: string[];
     journal: string;
@@ -18,3 +18,5 @@ export interface Article{
     isAnalyst: boolean;
   };
 }
+
+export default IArticle;

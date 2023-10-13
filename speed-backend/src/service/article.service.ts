@@ -80,7 +80,6 @@ export class ArticleService {
         'Test Driven Development (TDD)',
         'Agile Software Development',
         'Continuous Integration (CI)',
-        'Publication Year',
         'Others',
       ];
       return methods;

@@ -3,7 +3,7 @@ import { useState } from "react";
 import Header from "../component/Header";
 import { useRouter } from "next/navigation";
 import DropdownFilter from "../component/DropDownCategory";
-import { GetArticles, GetSingleArticle } from "../../../pages/api/api";
+import { GetArticleByPracticeSE, GetArticleYear, GetArticles, GetSingleArticle } from "../../../pages/api/api";
 import DropdownYearFilter from "../component/DropDownPublicationYear";
 export default function SearchView() {
   /**
@@ -43,6 +43,19 @@ export default function SearchView() {
     }
   };
 
+  function handleYearFilter(value: number) {
+    if (value !== 0 || null) {
+      GetArticleYear(value).then((response: any) => { setSearchResult(response.article) });
+    }
+  }
+
+  function handlePracticeMethods(value: string) {
+    if (value !== "" || null) {
+      GetArticleByPracticeSE(value).then((response: any) => { setSearchResult(response.article) }).catch((err: any) => { alert('Can not found practice method') });
+    }
+  }
+
+
   return (
     <>
       <Header />
@@ -53,8 +66,8 @@ export default function SearchView() {
             <form onSubmit={handleSearchButton}>
               <div className="flex flex-row">
                 <div className="p-1">
-                  <DropdownFilter />
-                  <DropdownYearFilter />
+                  <DropdownFilter dropDownFilter={handlePracticeMethods} />
+                  <DropdownYearFilter dropDownYearFilter={handleYearFilter} />
                 </div>
                 <div className="p-1">
                   <input
