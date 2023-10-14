@@ -6,9 +6,6 @@ import { useRouter } from "next/navigation";
 import BackgroundImage from "./component/Background";
 import Image from "next/image";
 export default function Home() {
-  const midParagraphStyle: string = "text-white text-4xl text-center";
-  const smallParagraphStyle: string = "text-white text-4xl text-center mb-[35px]"
-  const headerStyle: string = "text-white text-6xl font-bold text-center";
   const router = useRouter();
 
   useEffect(() => {
