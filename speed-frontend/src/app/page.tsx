@@ -36,7 +36,9 @@ export default function Home() {
             className="font-bold py-8 px-10 hover:bg-[#0332CB] bg-white rounded-full bg-opacity-25"
             onClick={searchPage}
           >
-            <Image src="/assets/magnifier.png" alt="search" className="py-2 bg-opacity-0" />
+            <Image src="/assets/magnifier.png" alt="search" className="py-2 bg-opacity-0" width="0"
+              height="0"
+              sizes="100vw" />
             Searching View
           </button>
         </div>
@@ -45,7 +47,9 @@ export default function Home() {
             className="font-bold py-8 px-10 hover:bg-[#0332CB] bg-white rounded-full bg-opacity-25"
             onClick={moderatorPage}
           >
-            <Image src="/assets/magnifier.png" alt="moderator" className="py-2 bg-opacity-0" />
+            <Image src="/assets/magnifier.png" alt="moderator" className="py-2 bg-opacity-0" width="0"
+              height="0"
+              sizes="100vw" />
             Moderator View
           </button>
         </div>
@@ -54,7 +58,9 @@ export default function Home() {
             className="font-bold py-8 px-10 hover:bg-[#0332CB] bg-white rounded-full bg-opacity-25"
             onClick={analystPage}
           >
-            <Image src="/assets/magnifier.png" alt="analyst" className="py-2 bg-opacity-0" />
+            <Image src="/assets/magnifier.png" alt="analyst" className="py-2 bg-opacity-0" width="0"
+              height="0"
+              sizes="100vw" />
             Analysting View
           </button>
         </div>
