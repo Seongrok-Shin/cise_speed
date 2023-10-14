@@ -7,7 +7,7 @@ import IArticle from "@/app/interface/IArticle";
  * @returns {any}: void
  */
 
-const isHost: boolean = false;
+const isHost: boolean = true;
 
 const hostAddress: string | void = (isHost)  ? process.env.NEXT_PUBLIC_HOST_ADDRESS : process.env.NEXT_PUBLIC_BACKEND_LOCAL_ADDRESS;
 
