@@ -180,8 +180,8 @@ function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { 
           © 2023 by SPEED DATABASE Powered and secured by AUT
         </div>
       </div>
-
-      );
+    </>
+  );
 }
 
-      export default SubmitPageForm;
+export default SubmitPageForm;
