@@ -38,6 +38,7 @@ export class ArticleService {
       status: article.status,
       claim: article.claim,
       result: article.result,
+      evidence: article.evidence,
       research: article.research,
       participant: article.participant,
       is_approved: {

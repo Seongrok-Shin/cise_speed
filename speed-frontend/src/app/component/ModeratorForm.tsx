@@ -1,3 +1,4 @@
+import IArticle from "../interface/IArticle";
 import AlertDialog from "./Alert";
 import Header from "./Header";
 
@@ -23,14 +24,14 @@ export function ModeratorPageForm({ title, message, buttonValue, status }: any, 
                             </tr>
                         </thead>
                         <tbody>
-                            {modeQueue.map((result: any, i: number): any => {
+                            {modeQueue.map((result: IArticle, i: number): any => {
                                 return (
                                     <tr key={i}>
                                         <td className={tableStyle}>{result.title}</td>
                                         <td className={tableStyle}>{result.authors}</td>
                                         <td className={tableStyle}>{result.year}</td>
                                         <td className={tableStyle}>{result.journal}</td>
-                                        <td className={tableStyle}>{result.doi}</td>
+                                        <td className={tableStyle}>{result.DOI}</td>
                                         <td className={tableStyle}>{result.claim}</td>
                                         <td className={tableStyle}>{result.evidence}</td>
                                         <td className={tableStyle}><input className=" px-5 rounded-xl border-2 border-sky-300 focus:outline-none focus:border-black text-base font-medium hover:bg-gray-100 hover:text-gray-700 text-white bg-sky-600" type="button" value="Accept" onClick={() => modAccept(result.id)} /></td>

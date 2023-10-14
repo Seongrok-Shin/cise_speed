@@ -1,9 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect } from "react";
 import React from "react";
 import Header from "./component/Header";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 export default function Home() {
   const router = useRouter();
   useEffect(() => {
@@ -25,6 +27,7 @@ export default function Home() {
       <div className="overflow-hidden">
         <img
           src="/assets/books.png"
+          alt="homeBackground"
           className="absolute opacity-50 w-full h-full"
         />
         <div className="absolute w-full font-bold font-sans leading-7 text-center text-white lg:text-3xl lg:py-60 md:text-3xl md:py-50  sm:text-lg sm:py-32 xl:text-3xl xl:py-60 xs:text-sm xs:py-20">
@@ -34,7 +37,7 @@ export default function Home() {
         </div>
         <div className="absolute bottom-6 inset-x-0 flex-row flex justify-center font-sans text-center text-white sm:bottom-48">
           <button className="font-bold xl:py-8 xl:px-10 lg:py-8 lg:px-10 hover:text-black">
-            <img src="/assets/Search.png" onClick={searchPage} />
+            <img src="/assets/Search.png" alt="search" onClick={searchPage} />
             Searching View
           </button>
           <span className="px-5"></span>
@@ -42,7 +45,7 @@ export default function Home() {
             className="font-bold xl:py-8 xl:px-10 lg:py-8 lg:px-10  hover:text-black"
             onClick={moderatorPage}
           >
-            <img src="/assets/mode.png" />
+            <img src="/assets/mode.png" alt="moderator" />
             Moderator View
           </button>
           <span className="px-5"></span>
@@ -50,7 +53,7 @@ export default function Home() {
             className="font-bold xl:py-8 xl:px-10 lg:py-8 lg:px-10 hover:text-black"
             onClick={analystPage}
           >
-            <img src="/assets/analyst.png" />
+            <img src="/assets/analyst.png" alt="Analyst" />
             Analysting View
           </button>
         </div>

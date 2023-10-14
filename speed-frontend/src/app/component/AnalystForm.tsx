@@ -1,3 +1,4 @@
+import IArticle from "../interface/IArticle";
 import AlertDialog from "./Alert";
 import Header from "./Header";
 export function AnalystPageForm({ title, message, buttonValue, status }: any, closeDialog: any, modeQueue: any, tableStyle: any, buttonStyle: any, modAccept: any, modReject: any) {
@@ -19,7 +20,7 @@ export function AnalystPageForm({ title, message, buttonValue, status }: any, cl
                             </tr>
                         </thead>
                         <tbody>
-                            {modeQueue.map((result: any, i: number): any => {
+                            {modeQueue.map((result: IArticle, i: number): any => {
                                 return (
                                     <tr key={i}>
                                         <td className={tableStyle}>{result.title}</td>
