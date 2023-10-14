@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Logo from "../assets/logo.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -18,7 +17,7 @@ const Header = () => {
   return (
     <div className="flex flex-wrap p-5 flex-col md:flex-row items-center hover:text-black bg-[#0332CB]">
       <Image
-        src={Logo}
+        src="/assets/logo.png"
         alt="Logo.png"
         width={75}
         height={75}
@@ -33,26 +32,29 @@ const Header = () => {
         <p className="text-3xl ml-24 mr-5 font-bold">DATABASE</p>
       </a>
       <ul className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-        <a href="/" className="mr-5 font-mono text-white hover:text-gray-900">
-          Home
-        </a>
         <a
           href="/search"
           className="mr-5 font-mono text-white hover:text-gray-900"
         >
-          Search View
+          Search
         </a>
         <a
           href="/moderator"
           className="mr-5 font-mono text-white hover:text-gray-900"
         >
-          Moderator View
+          Moderator
         </a>
         <a
           href="/analyst"
           className="mr-5 font-mono text-white hover:text-gray-900"
         >
-          Analyst View
+          Analyst
+        </a>
+        <a
+          href="/admin"
+          className="mr-5 font-mono text-white hover:text-gray-900"
+        >
+          Administrator
         </a>
       </ul>
     </div>
