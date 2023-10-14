@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import React from "react";
 import Header from "./component/Header";
 import { useRouter } from "next/navigation";
 export default function Home() {
