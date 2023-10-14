@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import Form from "../component/submitForm";
+import SubmitPageForm from "../component/SubmitForm";
 import IArticle from "../interface/IArticle";
 import { CreateArticle } from "../../../pages/api/api";
-
+import { useRouter } from "next/navigation";
 
 /**
  * @author @Seongrok-Shin
@@ -12,9 +12,14 @@ import { CreateArticle } from "../../../pages/api/api";
  */
 
 const SubmitPage = () => {
-  useEffect(() => {
-    document.body.style.backgroundColor = "#0332CB";
-  }, [])
+  const router = useRouter();
+
+  const [dialog, setDialog] = useState({
+    title: "",
+    message: "",
+    buttonValue: "",
+    status: false,
+  })
 
   const [data, setData] = useState<IArticle>({
     title: '',
@@ -42,6 +47,23 @@ const SubmitPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    document.body.style.backgroundColor = "#0332CB";
+    document.title = "submission form"
+    document.body.style.backgroundImage = "url(assets/background.png)";
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundSize = "cover";
+  }, [dialog])
+
+  function closeDialog() {
+    setDialog({
+      title: "",
+      message: "",
+      buttonValue: "",
+      status: false,
+    });
+  }
+
   const handleChange = (e: any) => {
     if (e.target.name === "year" || e.target.name === "volume" || e.target.name === "pages") {
       const numericValue = parseFloat(e.target.value);
@@ -67,13 +89,27 @@ const SubmitPage = () => {
     setLoading(true);
     try {
       const res = await CreateArticle(data);
+      setDialog({
+        title: "Article Accepted",
+        message: "Sucessfully submitted to the queue.",
+        buttonValue: "Confirm",
+        status: true,
+      });
+      router.push('search');
     } catch (err: any) {
+      setDialog({
+        title: "Article Rejected",
+        message: `Unsuccessfully submitted to the queue. ${err}`,
+        buttonValue: "Confirm",
+        status: true,
+      });
       setError(err);
     }
     setLoading(false);
   };
 
-  return Form(handleChange, handleSubmit, data);
+
+  return SubmitPageForm(handleChange, handleSubmit, data, dialog, closeDialog);
 };
 
 export default SubmitPage;

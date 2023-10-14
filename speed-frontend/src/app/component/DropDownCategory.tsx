@@ -6,7 +6,6 @@ const DropdownFilter = ({ dropDownFilter }: any) => {
   const [methods, setMethods] = useState<Array<string>>([]);
   useEffect(() => {
     GetSEMethods().then((value: any) => { setMethods(value.methods) }) as Promise<Array<string> | void>;
-    console.log("hello");
   }, [])
 
   const handleChangeFilter = (event: any) => {

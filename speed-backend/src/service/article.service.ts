@@ -110,7 +110,6 @@ export class ArticleService {
         'Test Driven Development (TDD)',
         'Agile Software Development',
         'Continuous Integration (CI)',
-        'Others',
       ];
       return methods;
     } catch (err: any) {

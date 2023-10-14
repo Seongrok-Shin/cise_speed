@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Article } from "../../types/article.interface";
+import AlertDialog from "@/app/component/Alert";
 /**
  * @author @dgw7626 Hanul Rheem
  * @description: creates new article
@@ -16,13 +17,11 @@ export async function CreateArticle(article:Article){
               "Access-Control-Allow-Methods": "POST", 
               "Access-Control-Allow-Headers": "Content-Type", 
             }}).then((data:any) => {
-                alert("[successfully submitted]\n data result:" + JSON.stringify(data.data));
             });
 
         return response;
     }
     catch (error){
-        alert(`error: ${error}`);
         console.error(`error: ${error}`);
        throw error;
     }
@@ -48,7 +47,6 @@ export async function GetArticles(){
         return response;
     }
     catch(error){
-        alert(error);
         console.error(`error${error}`);
         throw error;
     }
@@ -75,7 +73,6 @@ export async function GetSingleArticle(anyValue: string){
           return response;
     }
     catch (error) {
-        alert(error);
         console.error(`error${error}`);
         throw error;
     }
@@ -91,7 +88,6 @@ export async function DeleteArticle(id:string){
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
         }).then((data:any) => {
-            alert("DELETED!");
           });
           return response;
     }
@@ -110,7 +106,6 @@ export async function UpdateArticleApproval(id:string, updateArticle: any){
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
         }).then((data:any) => {
-            alert("UPDATED!");
           });
           return response;
     }
@@ -153,7 +148,6 @@ export async function GetArticleYear(year: number){
           return response;
     }
     catch (error) {
-        alert(error);
         console.error(`error${error}`);
         throw error;
     }
@@ -169,13 +163,10 @@ export async function GetArticleAuthor(author: string){
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
         }).then((data:any) => {
-            alert(JSON.stringify(data.data));
-            console.log(JSON.stringify(data.data))
           });
           return response;
     }
     catch (error) {
-        alert(error);
         console.error(`error${error}`);
         throw error;
     }
@@ -191,13 +182,10 @@ export async function GetArticleClaim(claim: string){
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
         }).then((data:any) => {
-            alert(JSON.stringify(data.data));
-            console.log(JSON.stringify(data.data))
           });
           return response;
     }
     catch (error) {
-        alert(error);
         console.error(`error${error}`);
         throw error;
     }
@@ -213,8 +201,6 @@ export async function GetArticleEvidence(evidence: string){
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
         }).then((data:any) => {
-            alert(JSON.stringify(data.data));
-            console.log(JSON.stringify(data.data))
           });
           return response;
     }

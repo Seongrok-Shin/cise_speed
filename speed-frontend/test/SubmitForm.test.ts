@@ -1,5 +1,5 @@
 import { describe, expect, test } from "@jest/globals";
-import Form from "@/app/component/submitForm";
+import SubmitPageForm from "@/app/component/SubmitForm";
 import DataInterface from "@/app/interface/IArticle";
 import IArticle from "@/app/interface/IArticle";
 
@@ -33,7 +33,7 @@ describe("Form", () => {
       isModRejected: false,
     }
     };
-    const form = Form(handleChnage, handleSubmit, data);
+    const form = SubmitPageForm(handleChnage, handleSubmit, data);
     expect(form).toMatchSnapshot();
   });
 });

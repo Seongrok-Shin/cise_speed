@@ -12,8 +12,13 @@ const DropdownYearFilter = ({ dropDownYearFilter }: any) => {
         }
         const fetchArticles = async () => {
             await GetArticles().then((response: any,) => { setArticles(response.article) });
-            articles.map((response: any) => { years.push(response.year) });
-            setSortedYear(years.filter((value: any, index: number) => years.indexOf(value) === index));
+            articles.map((response: any) => {
+                if (response.is_approved.isAnalyst && response.is_approved.isModerator) {
+                    years.push(response.year);
+                }
+            });
+            const tempYear = years.filter((value: any, index: number) => years.indexOf(value) === index);
+            setSortedYear(tempYear.sort((a: any, b: any) => b - a));
         }
         fetchArticles();
     }, [sortedYear]);

@@ -26,10 +26,8 @@ const Header = () => {
   };
   return (
     <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center hover:text-black">
+      <div className="mr-5 text-black hover:text-gray-900 text-white text-left" onClick={HomePage}> SPEED <b>DATABASE</b></div>
       <ul className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-        <li className="mr-5 text-black hover:text-gray-900 text-white" onClick={HomePage}>
-          Speed Database
-        </li>
         <li
           className="mr-5 text-black hover:text-gray-900 text-white"
           onClick={SearchPage}

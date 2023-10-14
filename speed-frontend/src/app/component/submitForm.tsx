@@ -2,6 +2,7 @@
 import IArticle from "../interface/IArticle";
 import React from "react";
 import Header from "./Header";
+import AlertDialog from "./Alert";
 
 /**
  * @author @Seongrok-Shin
@@ -12,10 +13,11 @@ import Header from "./Header";
  * @returns {any}
  */
 
-function Form(handleChange: any, handleSubmit: any, data: IArticle) {
+function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { title, message, buttonValue, status }: any, closeDialog: any) {
   return (
     <>
       <Header />
+      {AlertDialog(title, message, buttonValue, status, closeDialog)}
       <div className="flex flex-col items-center">
         <form onSubmit={handleSubmit}>
           <div className="py-2">
@@ -25,7 +27,7 @@ function Form(handleChange: any, handleSubmit: any, data: IArticle) {
               placeholder="Enter title"
               onChange={handleChange}
               value={data.title}
-              className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+              className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
               required
             />
           </div>
@@ -36,7 +38,7 @@ function Form(handleChange: any, handleSubmit: any, data: IArticle) {
               placeholder="Enter author"
               onChange={handleChange}
               value={data.authors}
-              className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+              className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
               required
             />
           </div>
@@ -47,36 +49,36 @@ function Form(handleChange: any, handleSubmit: any, data: IArticle) {
               placeholder="Enter journal"
               onChange={handleChange}
               value={data.journal}
-              className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+              className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
               required
             />
           </div>
           <div>
-            <label >Year: </label>
+            <label className="text-white" >Year: </label>
             <input
               name="year"
               type="number"
               placeholder="Enter year"
               onChange={handleChange}
               value={data.year}
-              className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-0 w-48 float-right appearance-none"
+              className=" rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-0 w-48 float-right appearance-none"
               required
             />
           </div>
           <div className="py-2">
-            <label >Volume: </label>
+            <label className="text-white">Volume: </label>
             <input
               name="volume"
               type="number"
               placeholder="Enter volume"
               onChange={handleChange}
               value={data.volume}
-              className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-0 w-48 float-right appearance-none"
+              className=" rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-0 w-48 float-right appearance-none"
               required
             />
           </div>
           <div>
-            <label>Pages: </label>
+            <label className="text-white">Pages: </label>
             <input
               name="pages"
               type="text"
@@ -84,7 +86,7 @@ function Form(handleChange: any, handleSubmit: any, data: IArticle) {
               onChange={handleChange}
               value={data.pages}
               data-testid="pages"
-              className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-0 w-48 float-right appearance-none"
+              className=" rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-0 w-48 float-right appearance-none"
               required
             />
           </div>
@@ -95,7 +97,7 @@ function Form(handleChange: any, handleSubmit: any, data: IArticle) {
               placeholder="Enter DOI"
               onChange={handleChange}
               value={data.DOI}
-              className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+              className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
               required
             />
           </div>
@@ -106,7 +108,7 @@ function Form(handleChange: any, handleSubmit: any, data: IArticle) {
               placeholder="Enter Status"
               onChange={handleChange}
               value={data.status}
-              className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+              className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
               required
             />
           </div>
@@ -117,7 +119,7 @@ function Form(handleChange: any, handleSubmit: any, data: IArticle) {
               placeholder="Enter Claim"
               onChange={handleChange}
               value={data.claim}
-              className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+              className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
               required
             />
           </div>
@@ -128,7 +130,7 @@ function Form(handleChange: any, handleSubmit: any, data: IArticle) {
               placeholder="Enter Evidence"
               onChange={handleChange}
               value={data.evidence}
-              className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+              className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
               required
             />
           </div>
@@ -139,7 +141,7 @@ function Form(handleChange: any, handleSubmit: any, data: IArticle) {
               placeholder="Enter Research"
               onChange={handleChange}
               value={data.research}
-              className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+              className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
               required
             />
           </div>
@@ -150,7 +152,7 @@ function Form(handleChange: any, handleSubmit: any, data: IArticle) {
               placeholder="Enter Participant"
               onChange={handleChange}
               value={data.participant}
-              className="rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+              className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
               required
             />
           </div>
@@ -161,13 +163,11 @@ function Form(handleChange: any, handleSubmit: any, data: IArticle) {
               <option>Test Driven Development (TDD)</option>
               <option>Agile Software Development</option>
               <option>Continuous Integration (CI)</option>
-              <option>Others</option>
             </select>
           </div>
           <div>
             <button
-              className="w-full rounded-xl border-2 border-gray-300 focus:outline-none
-          focus:border-indigo-500 text-base px-4 py-2"
+              className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 bg-zinc-50"
               type="submit"
             >
               Send
@@ -178,4 +178,4 @@ function Form(handleChange: any, handleSubmit: any, data: IArticle) {
   );
 }
 
-export default Form;
+export default SubmitPageForm;
