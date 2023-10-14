@@ -8,6 +8,7 @@ export default function Home() {
   useEffect(() => {
     document.body.style.backgroundColor = "#0332CB";
   }, []);
+
   const searchPage = () => {
     router.push("/search");
   };
@@ -19,7 +20,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className="bg-[#0332CB]">
       <Header />
       <div className="overflow-hidden">
         <img
@@ -59,4 +60,6 @@ export default function Home() {
       </p>
     </>
   );
-}
+};
+
+export default Home;
