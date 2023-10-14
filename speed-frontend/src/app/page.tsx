@@ -1,16 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect } from "react";
+import React from "react";
 import Header from "./component/Header";
 import { useRouter } from "next/navigation";
-import BackgroundImage from "./component/Background";
 import Image from "next/image";
 export default function Home() {
   const router = useRouter();
-
   useEffect(() => {
     document.body.style.backgroundColor = "#0332CB";
-  }, [])
+  }, []);
   const searchPage = () => {
     router.push("/search");
   };
@@ -22,53 +22,45 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-[#0332CB]">
+    <>
       <Header />
       <div className="overflow-hidden">
-        <div className="absolute w-full font-bold font-sans py-48 px-52 text-white text-3xl leading-4">
-          <p className="py-4">Welcome to</p>
-          <p className="py-4">SPEED DATABASE</p>
-          <p className="py-4">MY BLOG ON EDUCATION</p>
-          <p className="py-4">AND TECHNOLOGY</p>
+        <img
+          src="/assets/books.png"
+          alt="homeBackground"
+          className="absolute opacity-50 w-full h-full"
+        />
+        <div className="absolute w-full font-bold font-sans leading-7 text-center text-white lg:text-3xl lg:py-60 md:text-3xl md:py-50  sm:text-lg sm:py-32 xl:text-3xl xl:py-60 xs:text-sm xs:py-20">
+          <p>❝ Welcome to SPEED DATABASE</p>
+          <p>MY BLOG ON EDUCATION</p>
+          <p>AND TECHNOLOGY ❞</p>
         </div>
-        <div className="absolute py-48 inset-x-0 font-sans text-white text-xl leading-4 items-center flex flex-col">
-          <button
-            className="font-bold py-8 px-10 hover:bg-[#0332CB] bg-white rounded-full bg-opacity-25"
-            onClick={searchPage}
-          >
-            <Image src="/assets/magnifier.png" alt="search" className="py-2 bg-opacity-0" width="0"
-              height="0"
-              sizes="100vw" />
+        <div className="absolute bottom-6 inset-x-0 flex-row flex justify-center font-sans text-center text-white sm:bottom-48">
+          <button className="font-bold xl:py-8 xl:px-10 lg:py-8 lg:px-10 hover:text-black">
+            <img src="/assets/Search.png" alt="search" onClick={searchPage} />
             Searching View
           </button>
-        </div>
-        <div className="absolute bottom-24 inset-x-0 font-sans text-white text-xl leading-4 items-center flex flex-col">
+          <span className="px-5"></span>
           <button
-            className="font-bold py-8 px-10 hover:bg-[#0332CB] bg-white rounded-full bg-opacity-25"
+            className="font-bold xl:py-8 xl:px-10 lg:py-8 lg:px-10  hover:text-black"
             onClick={moderatorPage}
           >
-            <Image src="/assets/magnifier.png" alt="moderator" className="py-2 bg-opacity-0" width="0"
-              height="0"
-              sizes="100vw" />
+            <img src="/assets/mode.png" alt="moderator" />
             Moderator View
           </button>
-        </div>
-        <div className="absolute bottom-[240px] ml-[1300px] font-sans text-white text-xl leading-4 items-center flex flex-col">
+          <span className="px-5"></span>
           <button
-            className="font-bold py-8 px-10 hover:bg-[#0332CB] bg-white rounded-full bg-opacity-25"
+            className="font-bold xl:py-8 xl:px-10 lg:py-8 lg:px-10 hover:text-black"
             onClick={analystPage}
           >
-            <Image src="/assets/magnifier.png" alt="analyst" className="py-2 bg-opacity-0" width="0"
-              height="0"
-              sizes="100vw" />
+            <img src="/assets/analyst.png" alt="Analyst" />
             Analysting View
           </button>
         </div>
-        {BackgroundImage("/assets/books.png")}
-        <div className="absolute w-full py-2.5 bottom-0 inset-x-0 text-white text-xs text-center leading-4">
-          © 2023 by SPEED DATABASE Powered and secured by AUT
-        </div>
       </div>
-    </div>
+      <p className="absolute text-white text-xs text-center bottom-0 inset-x-0">
+        © 2023 by SPEED DATABASE Powered and secured by AUT
+      </p>
+    </>
   );
 }
