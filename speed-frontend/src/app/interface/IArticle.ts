@@ -1,4 +1,5 @@
 interface IArticle {
+    id: string;
     title: string;
     authors: string[];
     journal: string;

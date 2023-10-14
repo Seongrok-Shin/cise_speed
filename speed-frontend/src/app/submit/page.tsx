@@ -22,6 +22,7 @@ const SubmitPage = () => {
   })
 
   const [data, setData] = useState<IArticle>({
+    id: '',
     title: '',
     authors: [],
     journal: '',

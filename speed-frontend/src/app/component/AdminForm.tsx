@@ -1,4 +1,4 @@
-import { Article } from "../../../types/article.interface";
+import IArticle from "../interface/IArticle";
 import AlertDialog from "./Alert";
 import Header from "./Header";
 
@@ -24,7 +24,7 @@ export function AdminPageForm({ title, message, buttonValue, status }: any, clos
                             </tr>
                         </thead>
                         <tbody>
-                            {modeQueue.map((result: Article, i: number): any => {
+                            {modeQueue.map((result: IArticle, i: number): any => {
                                 return (
                                     <tr key={i}>
                                         <td className={tableStyle}>{result.title}</td>

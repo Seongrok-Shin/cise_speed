@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Header from "./component/Header";
 import { useRouter } from "next/navigation";
 import BackgroundImage from "./component/Background";
+import Image from "next/image";
 export default function Home() {
   const midParagraphStyle: string = "text-white text-4xl text-center";
   const smallParagraphStyle: string = "text-white text-4xl text-center mb-[35px]"
@@ -38,7 +39,7 @@ export default function Home() {
             className="font-bold py-8 px-10 hover:bg-[#0332CB] bg-white rounded-full bg-opacity-25"
             onClick={searchPage}
           >
-            <img src="/assets/magnifier.png" className="py-2 bg-opacity-0" />
+            <Image src="/assets/magnifier.png" alt="search" className="py-2 bg-opacity-0" />
             Searching View
           </button>
         </div>
@@ -47,7 +48,7 @@ export default function Home() {
             className="font-bold py-8 px-10 hover:bg-[#0332CB] bg-white rounded-full bg-opacity-25"
             onClick={moderatorPage}
           >
-            <img src="/assets/magnifier.png" className="py-2 bg-opacity-0" />
+            <Image src="/assets/magnifier.png" alt="moderator" className="py-2 bg-opacity-0" />
             Moderator View
           </button>
         </div>
@@ -56,7 +57,7 @@ export default function Home() {
             className="font-bold py-8 px-10 hover:bg-[#0332CB] bg-white rounded-full bg-opacity-25"
             onClick={analystPage}
           >
-            <img src="/assets/magnifier.png" className="py-2 bg-opacity-0" />
+            <Image src="/assets/magnifier.png" alt="analyst" className="py-2 bg-opacity-0" />
             Analysting View
           </button>
         </div>

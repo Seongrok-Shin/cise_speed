@@ -1,13 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import Header from "../component/Header";
 import { useRouter } from "next/navigation";
-import DropdownFilter from "../component/DropDownCategory";
 import { GetArticleByPracticeSE, GetArticleYear, GetArticles, GetSingleArticle } from "../../../pages/api/api";
-import DropdownYearFilter from "../component/DropDownPublicationYear";
-import AlertDialog from "../component/Alert";
 import { SearchPageForm } from "../component/SearchForm";
-import { Article } from "../../../types/article.interface";
+import IArticle from "../interface/IArticle";
 export default function SearchView() {
   const router = useRouter();
   const [search, setSearch] = useState("");
@@ -49,8 +45,8 @@ export default function SearchView() {
     if (search !== "" || null) {
       const updatedSearchResults: any = [];
       GetSingleArticle(search).then((response: any) => {
-        const articles: Article[] = response.article;
-        articles.map((article: Article) => {
+        const articles: IArticle[] = response.article;
+        articles.map((article: IArticle) => {
           if (article.is_approved.isAnalyst && article.is_approved.isModerator) {
             updatedSearchResults.push(article);
           }
@@ -68,8 +64,8 @@ export default function SearchView() {
     else {
       const updatedSearchResults: any = [];
       GetArticles().then((response: any) => {
-        const articles: Article[] = response.article;
-        articles.map((article: Article) => {
+        const articles: IArticle[] = response.article;
+        articles.map((article: IArticle) => {
           if (article.is_approved.isAnalyst && article.is_approved.isModerator) {
             updatedSearchResults.push(article);
           }
@@ -90,8 +86,8 @@ export default function SearchView() {
     if (search !== "" || null) {
       const updatedSearchResults: any = [];
       GetSingleArticle(search).then((response: any) => {
-        const articles: Article[] = response.article;
-        articles.map((article: Article) => {
+        const articles: IArticle[] = response.article;
+        articles.map((article: IArticle) => {
           if (article.is_approved.isAnalyst && article.is_approved.isModerator) {
             updatedSearchResults.push(article);
           }
@@ -102,8 +98,8 @@ export default function SearchView() {
     else {
       const updatedSearchResults: any = [];
       GetArticles().then((response: any) => {
-        const articles: Article[] = response.article;
-        articles.map((article: Article) => {
+        const articles: IArticle[] = response.article;
+        articles.map((article: IArticle) => {
           if (article.is_approved.isAnalyst && article.is_approved.isModerator) {
             updatedSearchResults.push(article);
           }
@@ -117,8 +113,8 @@ export default function SearchView() {
     if (value !== 0 || null) {
       const updatedSearchResults: any = [];
       GetArticleYear(value).then((response: any) => {
-        const articles: Article[] = response.article;
-        articles.map((article: Article) => {
+        const articles: IArticle[] = response.article;
+        articles.map((article: IArticle) => {
           if (article.is_approved.isAnalyst && article.is_approved.isModerator) {
             updatedSearchResults.push(article);
           }
@@ -132,8 +128,8 @@ export default function SearchView() {
     if (value !== "" || null) {
       const updatedSearchResults: any = [];
       GetArticleByPracticeSE(value).then((response: any) => {
-        const articles: Article[] = response.article;
-        articles.map((article: Article) => {
+        const articles: IArticle[] = response.article;
+        articles.map((article: IArticle) => {
           if (article.is_approved.isAnalyst && article.is_approved.isModerator) {
             updatedSearchResults.push(article);
           }

@@ -1,4 +1,4 @@
-import { Article } from "../../../types/article.interface";
+import IArticle from "../interface/IArticle";
 import AlertDialog from "./Alert";
 import DropdownFilter from "./DropDownCategory";
 import DropdownYearFilter from "./DropDownPublicationYear";
@@ -74,7 +74,7 @@ export function SearchPageForm({ title, message, buttonValue, status }: any, clo
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {searchResult.map((result: Article, i: number): any => {
+                                    {searchResult.map((result: IArticle, i: number): any => {
                                         return (
                                             <tr key={i}>
                                                 <td className={tableStyle}>{result.title}</td>

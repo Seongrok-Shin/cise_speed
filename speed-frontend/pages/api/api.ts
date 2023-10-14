@@ -1,6 +1,5 @@
 import axios from "axios";
-import { Article } from "../../types/article.interface";
-import AlertDialog from "@/app/component/Alert";
+import IArticle from "@/app/interface/IArticle";
 /**
  * @author @dgw7626 Hanul Rheem
  * @description: creates new article
@@ -9,7 +8,7 @@ import AlertDialog from "@/app/component/Alert";
  */
 const hostAddress: string | void = process.env.NEXT_PUBLIC_BACKEND_LOCAL_ADDRESS;
 
-export async function CreateArticle(article:Article){
+export async function CreateArticle(article:IArticle){
     try{
         const response = await axios.post(`${hostAddress}article/upload/`, article,{
             headers: {

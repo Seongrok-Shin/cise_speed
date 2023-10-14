@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Header from "../component/Header";
 import { GetArticles, UpdateArticleApproval } from "../../../pages/api/api";
 import IArticle from "../interface/IArticle";
-import AlertDialog from "../component/Alert";
 import { ModeratorPageForm } from "../component/ModeratorForm";
 export default function ModeratorView() {
   const [articles, setArticles] = useState<any>([]);

@@ -1,9 +1,9 @@
 import React from "react";
-
+import Image from "next/image";
 const BackgroundImage = (imgSrc: string) => {
     return (
         <div>
-            <img src={imgSrc} alt="background" />
+            <Image src={imgSrc} alt="background" />
         </div>
     );
 };
