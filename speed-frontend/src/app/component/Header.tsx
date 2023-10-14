@@ -1,5 +1,7 @@
 "use client";
 import React from "react";
+import Logo from "../assets/logo.png";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 /**
@@ -7,44 +9,51 @@ import { useRouter } from "next/navigation";
  * Description
  * @returns {any}
  */
+
 const Header = () => {
   const router = useRouter();
-  const HomePage = () => {
+  const home = () => {
     router.push("/");
   };
-  const SearchPage = () => {
-    router.push("/search");
-  };
-  const ModeratorPage = () => {
-    router.push("/moderator");
-  };
-  const AnalystPage = () => {
-    router.push("/analyst");
-  };
   return (
-    <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center hover:text-black">
+    <div className="flex flex-wrap p-5 flex-col md:flex-row items-center hover:text-black bg-[#0332CB]">
+      <Image
+        src={Logo}
+        alt="Logo.png"
+        width={75}
+        height={75}
+        className="px-2"
+        onClick={home}
+      />
+      <a
+        href="/"
+        className="text-3xl mr-5 font-sans text-white hover:text-gray-900"
+      >
+        <p className="absolute text-3xl mr-5 ">SPEED</p>
+        <p className="text-3xl ml-24 mr-5 font-bold">DATABASE</p>
+      </a>
       <ul className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-        <li className="mr-5 text-black hover:text-gray-900" onClick={HomePage}>
+        <a href="/" className="mr-5 font-mono text-white hover:text-gray-900">
           Home
-        </li>
-        <li
-          className="mr-5 text-black hover:text-gray-900"
-          onClick={SearchPage}
+        </a>
+        <a
+          href="/search"
+          className="mr-5 font-mono text-white hover:text-gray-900"
         >
           Search View
-        </li>
-        <li
-          className="mr-5 text-black hover:text-gray-900"
-          onClick={ModeratorPage}
+        </a>
+        <a
+          href="/moderator"
+          className="mr-5 font-mono text-white hover:text-gray-900"
         >
           Moderator View
-        </li>
-        <li
-          className="mr-5 text-black hover:text-gray-900"
-          onClick={AnalystPage}
+        </a>
+        <a
+          href="/analyst"
+          className="mr-5 font-mono text-white hover:text-gray-900"
         >
           Analyst View
-        </li>
+        </a>
       </ul>
     </div>
   );
