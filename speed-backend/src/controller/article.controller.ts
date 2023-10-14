@@ -6,7 +6,6 @@ import {
   Res,
   Controller,
   Param,
-  Logger,
   Patch,
   Delete,
 } from '@nestjs/common';
@@ -76,7 +75,7 @@ export class ArticleController {
   }
 
   @Delete('delete/:id')
-  async deleteArticle(@Res() response, @Param('id') id: string){
+  async deleteArticle(@Res() response, @Param('id') id: string) {
     try {
       const article = this.articleService.deleteArticleById(id);
       return response.status(HttpStatus.OK).json({
@@ -213,7 +212,6 @@ export class ArticleController {
       });
     }
   }
-
 
   @Get('methods/SE')
   async getAllMethods(@Res() response) {

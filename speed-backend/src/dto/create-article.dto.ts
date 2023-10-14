@@ -9,7 +9,6 @@ import {
 } from 'class-validator';
 
 export class CreateArticleDTO {
-  
   @IsString()
   @MaxLength(30)
   @IsNotEmpty()

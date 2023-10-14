@@ -1,3 +1,4 @@
+import IArticle from "../interface/IArticle";
 import AlertDialog from "./Alert";
 import DropdownFilter from "./DropDownCategory";
 import DropdownYearFilter from "./DropDownPublicationYear";
@@ -73,14 +74,14 @@ export function SearchPageForm({ title, message, buttonValue, status }: any, clo
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {searchResult.map((result: any, i: number): any => {
+                                    {searchResult.map((result: IArticle, i: number): any => {
                                         return (
                                             <tr key={i}>
                                                 <td className={tableStyle}>{result.title}</td>
                                                 <td className={tableStyle}>{result.authors}</td>
                                                 <td className={tableStyle}>{result.year}</td>
                                                 <td className={tableStyle}>{result.journal}</td>
-                                                <td className={tableStyle}>{result.doi}</td>
+                                                <td className={tableStyle}>{result.DOI}</td>
                                                 <td className={tableStyle}>{result.claim}</td>
                                                 <td className={tableStyle}>{result.evidence}</td>
                                                 <td className={tableStyle}>{(result.is_approved.isModerator && result.is_approved.isAnalyst) ? "Verified" : "Unverified"}</td>
