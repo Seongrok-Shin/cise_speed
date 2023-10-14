@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect } from "react";
@@ -24,7 +25,7 @@ export default function Home() {
     <>
       <Header />
       <div className="overflow-hidden">
-        <Image
+        <img
           src="/assets/books.png"
           alt="homeBackground"
           className="absolute opacity-50 w-full h-full"
@@ -36,7 +37,7 @@ export default function Home() {
         </div>
         <div className="absolute bottom-6 inset-x-0 flex-row flex justify-center font-sans text-center text-white sm:bottom-48">
           <button className="font-bold xl:py-8 xl:px-10 lg:py-8 lg:px-10 hover:text-black">
-            <Image src="/assets/Search.png" alt="search" onClick={searchPage} />
+            <img src="/assets/Search.png" alt="search" onClick={searchPage} />
             Searching View
           </button>
           <span className="px-5"></span>
@@ -44,7 +45,7 @@ export default function Home() {
             className="font-bold xl:py-8 xl:px-10 lg:py-8 lg:px-10  hover:text-black"
             onClick={moderatorPage}
           >
-            <Image src="/assets/mode.png" alt="moderator" />
+            <img src="/assets/mode.png" alt="moderator" />
             Moderator View
           </button>
           <span className="px-5"></span>
@@ -52,7 +53,7 @@ export default function Home() {
             className="font-bold xl:py-8 xl:px-10 lg:py-8 lg:px-10 hover:text-black"
             onClick={analystPage}
           >
-            <Image src="/assets/analyst.png" alt="Analyst" />
+            <img src="/assets/analyst.png" alt="Analyst" />
             Analysting View
           </button>
         </div>
