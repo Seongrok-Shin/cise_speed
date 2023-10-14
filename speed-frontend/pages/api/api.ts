@@ -6,7 +6,7 @@ import IArticle from "@/app/interface/IArticle";
  * @param {any} article:Article
  * @returns {any}: void
  */
-const hostAddress: string | void = process.env.NEXT_PUBLIC_BACKEND_LOCAL_ADDRESS;
+const hostAddress: string | void = process.env.NEXT_PUBLIC_HOST_ADDRESS;
 
 export async function CreateArticle(article:IArticle){
     try{
