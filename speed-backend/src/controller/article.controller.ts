@@ -6,9 +6,12 @@ import {
   Res,
   Controller,
   Param,
+  Patch,
+  Delete,
 } from '@nestjs/common';
 import { CreateArticleDTO } from '../dto/create-article.dto';
 import { ArticleService } from '../service/article.service';
+import { UpdatedArticleDTO } from '../dto/updated-article.dto';
 
 @Controller('article')
 export class ArticleController {
@@ -35,7 +38,6 @@ export class ArticleController {
   async getArticles(@Res() response) {
     try {
       const article = await this.articleService.getArticles();
-      console.log(article);
       return response.status(HttpStatus.OK).json({
         message: 'Article has successfully been searched!',
         article,
@@ -44,7 +46,7 @@ export class ArticleController {
       return response.status(HttpStatus.BAD_REQUEST).json({
         statusCode: 400,
         message: 'There was an error searching the articles',
-        error: 'Bad Request: Cant find articles',
+        error: `Bad Request: Cant find articles ${err}`,
       });
     }
   }
@@ -59,7 +61,6 @@ export class ArticleController {
   async getSingleArticle(@Res() response, @Param('id') title: string) {
     try {
       const article = await this.articleService.searchSingleArticle(title);
-      console.log(article);
       return response.status(HttpStatus.OK).json({
         message: 'Article has successfully been searched!',
         article,
@@ -69,6 +70,69 @@ export class ArticleController {
         statusCode: 400,
         message: 'There was an error searching the article',
         error: 'Bad Request: Cant find article',
+      });
+    }
+  }
+
+  @Delete('delete/:id')
+  async deleteArticle(@Res() response, @Param('id') id: string) {
+    try {
+      const article = this.articleService.deleteArticleById(id);
+      return response.status(HttpStatus.OK).json({
+        message: `Article has successfully been deleted!`,
+        article,
+      });
+    } catch (err: any) {
+      return response.status(HttpStatus.NOT_FOUND).json({
+        statusCode: 404,
+        message: 'There was an error deleting the article',
+        error: `Bad Request: Cant find article ${err}`,
+      });
+    }
+  }
+
+  @Patch('update/:id')
+  async updateArticle(
+    @Res() response,
+    @Param('id') id: string,
+    @Body() updatedArticle: UpdatedArticleDTO,
+  ) {
+    try {
+      const article = this.articleService.updateArticleApproval(
+        id,
+        updatedArticle.is_approved,
+      );
+      return response.status(HttpStatus.OK).json({
+        message: `Article has successfully been filtered by software engineering practice method!`,
+        article,
+      });
+    } catch (err: any) {
+      return response.status(HttpStatus.NOT_FOUND).json({
+        statusCode: 404,
+        message:
+          'There was an error searching the software engineering practice method',
+        error: `Bad Request: Cant find se practice method ${err}`,
+      });
+    }
+  }
+
+  @Get('methods/se_practice/:id')
+  async getPracticeMethods(@Res() response, @Param('id') practice: string) {
+    try {
+      const article = await this.articleService.searchArticleByAll({
+        se_practice: practice,
+      });
+      return response.status(HttpStatus.OK).json({
+        message:
+          'Article has successfully been filtered by software engineering practice method!',
+        article,
+      });
+    } catch (err: any) {
+      return response.status(HttpStatus.NOT_FOUND).json({
+        statusCode: 404,
+        message:
+          'There was an error searching the software engineering practice method',
+        error: 'Bad Request: Cant find se practice method',
       });
     }
   }
@@ -145,6 +209,23 @@ export class ArticleController {
         statusCode: 400,
         message: 'There was an error searching the evidence',
         error: 'Bad Request: Cant find evidence',
+      });
+    }
+  }
+
+  @Get('methods/SE')
+  async getAllMethods(@Res() response) {
+    try {
+      const methods = await this.articleService.getSEMethods();
+      return response.status(HttpStatus.OK).json({
+        message: 'Article has successfully obtained SE methods.',
+        methods,
+      });
+    } catch (err: any) {
+      return response.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: 400,
+        message: 'There was an error searching the methods',
+        error: 'Bad Request: Cant get the methods',
       });
     }
   }

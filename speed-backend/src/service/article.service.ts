@@ -24,9 +24,10 @@ export class ArticleService {
    * @description: returns all available articles
    * @returns {any} Aritcle[]
    */
-  async getArticles(){
-    const articles = await this.articleModel.find().exec();
+  async getArticles() {
+    const articles: any = await this.articleModel.find().exec();
     return articles.map((article: IArticle) => ({
+      id: article._id,
       title: article.title,
       authors: article.authors,
       journal: article.journal,
@@ -37,8 +38,15 @@ export class ArticleService {
       status: article.status,
       claim: article.claim,
       result: article.result,
+      evidence: article.evidence,
       research: article.research,
       participant: article.participant,
+      is_approved: {
+        isModerator: article.is_approved.isModerator as boolean,
+        isAnalyst: article.is_approved.isAnalyst as boolean,
+        isModRejected: article.is_approved.isModRejected as boolean,
+        isAnaRejected: article.is_approved.isAnaRejected as boolean,
+      },
     }));
   }
 
@@ -71,6 +79,45 @@ export class ArticleService {
       throw new NotFoundException(`Could not found ${all[0]}`);
     }
   }
+
+  async deleteArticleById(id: string) {
+    try {
+      const article: any = await this.articleModel
+        .deleteOne({ _id: id })
+        .exec();
+      return article;
+    } catch (err: any) {
+      throw new NotFoundException(`couldn't update the article ${err}`);
+    }
+  }
+
+  async updateArticleApproval(id: string, updatedArticle: any) {
+    try {
+      const article: any = (await this.articleModel.findById(id)) as IArticle;
+      if (updatedArticle) {
+        article.is_approved = updatedArticle;
+        article.save();
+      }
+    } catch (err: any) {
+      throw new NotFoundException(`couldn't update the article ${err}`);
+    }
+  }
+
+  async getSEMethods(): Promise<Array<string>> {
+    try {
+      const methods: Array<string> = [
+        'Mob Programming',
+        'Pair Programming',
+        'Test Driven Development (TDD)',
+        'Agile Software Development',
+        'Continuous Integration (CI)',
+      ];
+      return methods;
+    } catch (err: any) {
+      throw new NotFoundException(`couldn't get the SE methods ${err}`);
+    }
+  }
+
   /**
    * @author @dgw7626 Hanul Rheem
    * @description: finds the specific article with the keyword.
@@ -82,14 +129,14 @@ export class ArticleService {
     try {
       tempArticle = await this.articleModel.find({
         $or: [
-          { title: anyValue },
-          { authors: anyValue },
-          { journal: anyValue },
-          { DOI: anyValue },
-          { status: anyValue },
-          { claim: anyValue },
-          { research: anyValue },
-          { participant: anyValue },
+          { title: { $regex: new RegExp(anyValue, 'i') } },
+          { authors: { $regex: new RegExp(anyValue, 'i') } },
+          { journal: { $regex: new RegExp(anyValue, 'i') } },
+          { DOI: { $regex: new RegExp(anyValue, 'i') } },
+          { status: { $regex: new RegExp(anyValue, 'i') } },
+          { claim: { $regex: new RegExp(anyValue, 'i') } },
+          { research: { $regex: new RegExp(anyValue, 'i') } },
+          { participant: { $regex: new RegExp(anyValue, 'i') } },
         ],
       });
     } catch (err: any) {
@@ -107,7 +154,7 @@ export class ArticleService {
    * @param {any} value:any
    * @returns {any} : void
    */
-  private isEmpty(value: any){
+  private isEmpty(value: any) {
     return value && Object.keys(value).length === 0;
   }
 }

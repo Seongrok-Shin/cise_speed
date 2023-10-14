@@ -14,4 +14,11 @@ export interface IArticle extends Document {
   readonly evidence: string;
   readonly research: string;
   readonly participant: string;
+  readonly se_practice: string;
+  is_approved: {
+    isModerator: boolean;
+    isModRejected: boolean;
+    isAnalyst: boolean;
+    isAnaRejected: boolean;
+  };
 }

@@ -1,27 +1,29 @@
 import axios from "axios";
-import { Article } from "../../types/article.interface";
+import IArticle from "@/app/interface/IArticle";
 /**
  * @author @dgw7626 Hanul Rheem
  * @description: creates new article
  * @param {any} article:Article
  * @returns {any}: void
  */
-export async function CreateArticle(article:Article){
+
+const isHost: boolean = true;
+
+const hostAddress: string | void = (isHost)  ? process.env.NEXT_PUBLIC_HOST_ADDRESS : process.env.NEXT_PUBLIC_BACKEND_LOCAL_ADDRESS;
+
+export async function CreateArticle(article:IArticle){
     try{
-        const response = await axios.post(`http://localhost:5000/article/upload/`, article,{
+        const response = await axios.post(`${hostAddress}article/upload/`, article,{
             headers: {
               "Access-Control-Allow-Origin": "", 
               "Access-Control-Allow-Methods": "POST", 
               "Access-Control-Allow-Headers": "Content-Type", 
             }}).then((data:any) => {
-                alert("[successfully submitted]\n data result:" + JSON.stringify(data));
-                console.log(JSON.stringify(data));
             });
 
         return response;
     }
     catch (error){
-        alert(`error: ${error}`);
         console.error(`error: ${error}`);
        throw error;
     }
@@ -35,20 +37,18 @@ export async function CreateArticle(article:Article){
  */
 export async function GetArticles(){
     try{
-        const response :object | void = await axios.get( "http://localhost:5000/article/all",{
+        const response :object | void = await axios.get( `${hostAddress}article/all`,{
             headers: {
                 "Access-Control-Allow-Origin": "", 
                 "Access-Control-Allow-Methods": "GET", 
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
         }).then((data:any) => {
-            alert(JSON.stringify(data.data));
-            console.log(JSON.stringify(data.data));
+            return data.data;
         });
         return response;
     }
     catch(error){
-        alert(error);
         console.error(`error${error}`);
         throw error;
     }
@@ -62,7 +62,7 @@ export async function GetArticles(){
  */
 export async function GetSingleArticle(anyValue: string){
     try{
-        const response :object | void = await axios.get( `http://localhost:5000/article/${anyValue}`,
+        const response :object | void = await axios.get( `${hostAddress}article/${anyValue}`,
         {
             headers: {
                 "Access-Control-Allow-Origin": "", 
@@ -70,21 +70,55 @@ export async function GetSingleArticle(anyValue: string){
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
         }).then((data:any) => {
-            alert(JSON.stringify(data.data));
-            console.log(JSON.stringify(data.data))
+            return data.data;
           });
           return response;
     }
     catch (error) {
-        alert(error);
         console.error(`error${error}`);
         throw error;
     }
 }
 
-export async function GetArticleYear(year: number){
+export async function DeleteArticle(id:string){
     try{
-        const response :object | void = await axios.get( `http://localhost:5000/article/year/${year}`,
+        const response :object | void = await axios.delete( `${hostAddress}article/delete/${id}`,
+        {
+            headers: {
+                "Access-Control-Allow-Origin": "", 
+                "Access-Control-Allow-Methods": "DELETE", 
+                "Access-Control-Allow-Headers": "Content-Type", 
+              }
+        }).then((data:any) => {
+          });
+          return response;
+    }
+    catch (error) {
+        console.error(`error${error}`);
+    }
+}
+
+export async function UpdateArticleApproval(id:string, updateArticle: any){
+    try{
+        const response :object | void = await axios.patch( `${hostAddress}article/update/${id}`, updateArticle,
+        {
+            headers: {
+                "Access-Control-Allow-Origin": "", 
+                "Access-Control-Allow-Methods": "PATCH", 
+                "Access-Control-Allow-Headers": "Content-Type", 
+              }
+        }).then((data:any) => {
+          });
+          return response;
+    }
+    catch (error) {
+        console.error(`error${error}`);
+    }
+}
+
+export async function GetArticleByPracticeSE(method: string){
+    try{
+        const response :object | void = await axios.get( `${hostAddress}article/methods/se_practice/${method}`,
         {
             headers: {
                 "Access-Control-Allow-Origin": "", 
@@ -92,13 +126,30 @@ export async function GetArticleYear(year: number){
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
         }).then((data:any) => {
-            alert(JSON.stringify(data.data));
-            console.log(JSON.stringify(data.data))
+            return data.data;
           });
           return response;
     }
     catch (error) {
-        alert(error);
+        console.error(`error${error}`);
+    }
+}
+
+export async function GetArticleYear(year: number){
+    try{
+        const response :object | void = await axios.get( `${hostAddress}article/year/${year}`,
+        {
+            headers: {
+                "Access-Control-Allow-Origin": "", 
+                "Access-Control-Allow-Methods": "GET", 
+                "Access-Control-Allow-Headers": "Content-Type", 
+              }
+        }).then((data:any) => {
+            return data.data;
+          });
+          return response;
+    }
+    catch (error) {
         console.error(`error${error}`);
         throw error;
     }
@@ -106,7 +157,7 @@ export async function GetArticleYear(year: number){
 
 export async function GetArticleAuthor(author: string){
     try{
-        const response :object | void = await axios.get( `http://localhost:5000/article/author/${author}`,
+        const response :object | void = await axios.get( `${hostAddress}article/author/${author}`,
         {
             headers: {
                 "Access-Control-Allow-Origin": "", 
@@ -114,13 +165,10 @@ export async function GetArticleAuthor(author: string){
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
         }).then((data:any) => {
-            alert(JSON.stringify(data.data));
-            console.log(JSON.stringify(data.data))
           });
           return response;
     }
     catch (error) {
-        alert(error);
         console.error(`error${error}`);
         throw error;
     }
@@ -128,7 +176,7 @@ export async function GetArticleAuthor(author: string){
 
 export async function GetArticleClaim(claim: string){
     try{
-        const response :object | void = await axios.get( `http://localhost:5000/article/claim/${claim}`,
+        const response :object | void = await axios.get( `${hostAddress}article/claim/${claim}`,
         {
             headers: {
                 "Access-Control-Allow-Origin": "", 
@@ -136,13 +184,10 @@ export async function GetArticleClaim(claim: string){
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
         }).then((data:any) => {
-            alert(JSON.stringify(data.data));
-            console.log(JSON.stringify(data.data))
           });
           return response;
     }
     catch (error) {
-        alert(error);
         console.error(`error${error}`);
         throw error;
     }
@@ -150,7 +195,7 @@ export async function GetArticleClaim(claim: string){
 
 export async function GetArticleEvidence(evidence: string){
     try{
-        const response :object | void = await axios.get( `http://localhost:5000/article/evidence/${evidence}`,
+        const response :object | void = await axios.get( `${hostAddress}article/evidence/${evidence}`,
         {
             headers: {
                 "Access-Control-Allow-Origin": "", 
@@ -158,8 +203,6 @@ export async function GetArticleEvidence(evidence: string){
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
         }).then((data:any) => {
-            alert(JSON.stringify(data.data));
-            console.log(JSON.stringify(data.data))
           });
           return response;
     }
@@ -170,3 +213,20 @@ export async function GetArticleEvidence(evidence: string){
     }
 }
 
+export async function GetSEMethods(){
+    try{
+        const response : Array<string> | void = await axios.get(`${hostAddress}article/methods/SE`,{
+            headers: {
+                "Access-Control-Allow-Origin": "", 
+                "Access-Control-Allow-Methods": "GET", 
+                "Access-Control-Allow-Headers": "Content-Type", 
+              }
+        }).then((data:any) => { 
+            return data.data;
+        });
+        return response;
+    }catch(error){
+        console.error(`error: ${error}`);
+        throw error;
+    }
+}
