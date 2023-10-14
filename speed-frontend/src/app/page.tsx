@@ -2,9 +2,8 @@
 
 import { useEffect } from "react";
 import Header from "./component/Header";
-import MediaCard from "./component/Card";
 import { useRouter } from "next/navigation";
-import BackgroundImage from "./component/background";
+import BackgroundImage from "./component/Background";
 export default function Home() {
   const midParagraphStyle: string = "text-white text-4xl text-center";
   const smallParagraphStyle: string = "text-white text-4xl text-center mb-[35px]"

@@ -1,6 +1,5 @@
 import AlertDialog from "./Alert";
 import Header from "./Header";
-import BackgroundImage from "./background";
 export function AnalystPageForm({ title, message, buttonValue, status }: any, closeDialog: any, modeQueue: any, tableStyle: any, buttonStyle: any, modAccept: any, modReject: any) {
     return (<>
         <Header />

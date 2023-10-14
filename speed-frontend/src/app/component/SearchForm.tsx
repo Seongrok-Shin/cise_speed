@@ -2,7 +2,6 @@ import AlertDialog from "./Alert";
 import DropdownFilter from "./DropDownCategory";
 import DropdownYearFilter from "./DropDownPublicationYear";
 import Header from "./Header";
-import BackgroundImage from "./background";
 
 export function SearchPageForm({ title, message, buttonValue, status }: any, closeDialog: any,
     handleSearchButton: any,

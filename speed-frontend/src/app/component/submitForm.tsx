@@ -3,7 +3,6 @@ import IArticle from "../interface/IArticle";
 import React from "react";
 import Header from "./Header";
 import AlertDialog from "./Alert";
-import BackgroundImage from "./background";
 
 /**
  * @author @Seongrok-Shin
