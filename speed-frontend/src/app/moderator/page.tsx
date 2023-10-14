@@ -13,15 +13,13 @@ export default function ModeratorView() {
     buttonValue: "",
     status: false,
   });
-  const tableStyle: string = "w-32 border-solid border-blue-700 border-2 pr-2 pl-2  bg-zinc-50";
-  const buttonStyle: string = "rounded-xl border-2 border-gray-300 focus:outline-none focus:border-black text-base font-medium text-gray-700 hover:bg-gray-100  bg-zinc-50";
-
+  const tableStyle: string = " sm:w-[45px] md:w-[80px] lg:w-[140px] border-solid border-gray-300 border-2 pr-2 pl-2  bg-zinc-50 sm:text-xs md:text-md lg:text-lg break-all";
+  const buttonRejectStyle: string = "sm:px-3 lg:px-5 rounded-xl border-2 border-red-600 focus:outline-none focus:border-black text-base font-medium text-gray-700 hover:bg-gray-100  bg-sky-50 sm:text-xs md:text-md lg:text-lg";
+  const buttonAcceptStyle: string = "sm:px-3 lg:px-5 rounded-xl border-2 border-sky-300 focus:outline-none focus:border-black text-base font-medium hover:bg-gray-100 hover:text-gray-700 text-white bg-sky-600 sm:text-xs md:text-md lg:text-lg";
   useEffect(() => {
     document.body.style.backgroundColor = "#0332CB";
     document.title = "moderator view";
-    document.body.style.setProperty("background-image", "url(assets/background.png)");
-    document.body.style.setProperty("background-repeat", "no-repeat");
-    document.body.style.setProperty("background-size", "cover");
+    document.body.style.overflow = "hidden";
     if (modeQueue.length === 0) { // Check if modeQueue is empty
       GetArticles().then((response: any) => {
         setArticles(response.article);
@@ -32,12 +30,8 @@ export default function ModeratorView() {
         setModQueue(filteredArticles);
       });
     }
-  }, []);
-  useEffect(() => {
-    if (modeQueue.length > 0) {
-      console.log('modeQueue has changed:', modeQueue);
-    }
-  }, [modeQueue])
+  }, [modeQueue]);
+
 
   function closeDialog() {
     setDialog({
@@ -88,5 +82,5 @@ export default function ModeratorView() {
     });
   }
 
-  return ModeratorPageForm(dialog, closeDialog, modeQueue, tableStyle, buttonStyle, modAccept, modReject);
+  return ModeratorPageForm(dialog, closeDialog, modeQueue, tableStyle, buttonAcceptStyle, buttonRejectStyle, modAccept, modReject);
 }

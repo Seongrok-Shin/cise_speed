@@ -41,6 +41,7 @@ export class ArticleService {
       evidence: article.evidence,
       research: article.research,
       participant: article.participant,
+      date: article.date,
       is_approved: {
         isModerator: article.is_approved.isModerator as boolean,
         isAnalyst: article.is_approved.isAnalyst as boolean,

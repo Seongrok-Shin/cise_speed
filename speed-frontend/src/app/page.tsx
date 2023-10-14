@@ -10,6 +10,7 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     document.body.style.backgroundColor = "#0332CB";
+    document.body.style.overflow = "hidden";
   }, []);
   const searchPage = () => {
     router.push("/search");
@@ -37,8 +38,8 @@ export default function Home() {
         </div>
         <div className="absolute bottom-6 inset-x-0 flex-row flex justify-center font-sans text-center text-white sm:bottom-48">
           <button className="font-bold xl:py-8 xl:px-10 lg:py-8 lg:px-10 hover:text-black">
-            <img src="/assets/Search.png" alt="search" onClick={searchPage} />
-            Searching View
+            <img src="/assets/search.png" alt="search" onClick={searchPage} />
+            Search View
           </button>
           <span className="px-5"></span>
           <button
@@ -54,7 +55,7 @@ export default function Home() {
             onClick={analystPage}
           >
             <img src="/assets/analyst.png" alt="Analyst" />
-            Analysting View
+            Analyst View
           </button>
         </div>
       </div>

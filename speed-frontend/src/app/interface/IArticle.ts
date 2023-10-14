@@ -14,6 +14,7 @@ interface IArticle {
     research: string;
     participant: string;
     se_practice: string;
+    date: string;
     is_approved: {
       isModerator: boolean;
       isModRejected: boolean;

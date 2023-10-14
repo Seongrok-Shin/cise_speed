@@ -73,4 +73,8 @@ export class CreateArticleDTO {
     isAnalyst: boolean;
     isAnaRejected: boolean;
   };
+
+  @IsString()
+  @IsNotEmpty()
+  readonly date: string;
 }

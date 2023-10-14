@@ -1,17 +1,20 @@
 import IArticle from "../interface/IArticle";
 import AlertDialog from "./Alert";
+import BackgroundImage from "./Background";
 import Header from "./Header";
 
-export function AdminPageForm({ title, message, buttonValue, status }: any, closeDialog: any, modeQueue: any, tableStyle: any, buttonStyle: any, cleanArticle: any) {
+export function AdminPageForm({ title, message, buttonValue, status }: any, closeDialog: any, modeQueue: any, tableStyle: any, buttonRejectStyle: any, cleanArticle: any) {
+    const resultStyle: string = `text-left flex flex-col items-center w-full h-[32rem] overflow-y-scroll`;
     return (<>
         <Header />
         {AlertDialog(title, message, buttonValue, status, closeDialog)}
-        <div className="flex justify-center">
-            <div className=" text-left flex flex-col justify-between items-center">
+        <div className="absolute w-full flex justify-center">
+            <div className={resultStyle}>
                 {modeQueue.length >= 0 && (
-                    <table className="border-solid border-blue-700 border-2">
+                    <table className="border-solid border-gray-300 border-2">
                         <thead>
                             <tr>
+                                <th className={tableStyle}>Date</th>
                                 <th className={tableStyle}>Title</th>
                                 <th className={tableStyle}>Author/s</th>
                                 <th className={tableStyle}>Publication Year</th>
@@ -27,6 +30,7 @@ export function AdminPageForm({ title, message, buttonValue, status }: any, clos
                             {modeQueue.map((result: IArticle, i: number): any => {
                                 return (
                                     <tr key={i}>
+                                        <td className={tableStyle}>{result.date}</td>
                                         <td className={tableStyle}>{result.title}</td>
                                         <td className={tableStyle}>{result.authors}</td>
                                         <td className={tableStyle}>{result.year}</td>
@@ -35,7 +39,7 @@ export function AdminPageForm({ title, message, buttonValue, status }: any, clos
                                         <td className={tableStyle}>{result.claim}</td>
                                         <td className={tableStyle}>{result.evidence}</td>
                                         <td className={tableStyle}>{(result.is_approved.isAnalyst && result.is_approved.isModerator) ? "Verified" : "Unverified"}</td>
-                                        <td className={tableStyle}><input className=" px-5 rounded-xl border-2 border-red-600 focus:outline-none focus:border-black text-base font-medium text-gray-700 hover:bg-gray-100  bg-sky-50" type="button" value="Delete" onClick={() => cleanArticle(result.id)} /></td>
+                                        <td className={tableStyle}><input className={buttonRejectStyle} type="button" value="Delete" onClick={() => cleanArticle(result.id)} /></td>
                                     </tr>
                                 );
                             })}
@@ -44,6 +48,7 @@ export function AdminPageForm({ title, message, buttonValue, status }: any, clos
                 )}
             </div>
         </div>
+        {BackgroundImage("/assets/background.png", "absolute w-full h-full z-[-1]")}
         <div className="absolute w-full py-2.5 bottom-0 inset-x-0 text-white text-xs text-center leading-4">
             © 2023 by SPEED DATABASE Powered and secured by AUT
         </div>

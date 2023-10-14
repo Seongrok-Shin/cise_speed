@@ -49,10 +49,7 @@ const SubmitPage = () => {
 
   useEffect(() => {
     document.body.style.backgroundColor = "#0332CB";
-    document.title = "submission form"
-    document.body.style.setProperty("background-image", "url(assets/background.png)");
-    document.body.style.setProperty("background-repeat", "no-repeat");
-    document.body.style.setProperty("background-size", "cover");
+    document.title = "submission form";
   }, [dialog])
 
   function closeDialog() {

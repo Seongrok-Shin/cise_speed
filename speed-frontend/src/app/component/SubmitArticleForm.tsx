@@ -3,6 +3,7 @@ import IArticle from "../interface/IArticle";
 import React from "react";
 import Header from "./Header";
 import AlertDialog from "./Alert";
+import BackgroundImage from "./Background";
 
 /**
  * @author @Seongrok-Shin
@@ -14,11 +15,12 @@ import AlertDialog from "./Alert";
  */
 
 function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { title, message, buttonValue, status }: any, closeDialog: any) {
+  const resultStyle: string = `absolute flex flex-col items-center w-full `;
   return (
     <>
       <Header />
       {AlertDialog(title, message, buttonValue, status, closeDialog)}
-      <div className="flex flex-col items-center">
+      <div className={resultStyle}>
         <form onSubmit={handleSubmit}>
           <div className="py-2">
             <input
@@ -165,6 +167,16 @@ function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { 
               <option>Continuous Integration (CI)</option>
             </select>
           </div>
+          <div className="py-2" >
+            <input
+              name="date"
+              type="date"
+              onChange={handleChange}
+              value={data.date}
+              className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+              required
+            />
+          </div>
           <div>
             <button
               className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 bg-zinc-50"
@@ -174,10 +186,10 @@ function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { 
             </button>
           </div>
         </form>
-
-        <div className="absolute w-full py-2.5 bottom-0 inset-x-0 text-white text-xs text-center leading-4">
-          © 2023 by SPEED DATABASE Powered and secured by AUT
-        </div>
+      </div>
+      {BackgroundImage("/assets/background.png", "absolute w-full h-full z-[-1]")}
+      <div className="absolute w-full py-2.5 bottom-0 inset-x-0 text-white text-xs text-center leading-4">
+        © 2023 by SPEED DATABASE Powered and secured by AUT
       </div>
     </>
   );
