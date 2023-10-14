@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import SubmitPageForm from "../component/SubmitForm";
+import SubmitPageForm from "../component/SubmitArticleForm";
 import IArticle from "../interface/IArticle";
 import { CreateArticle } from "../../../pages/api/api";
 import { useRouter } from "next/navigation";

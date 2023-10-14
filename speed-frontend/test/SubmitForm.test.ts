@@ -1,5 +1,5 @@
 import { describe, expect, test } from "@jest/globals";
-import SubmitPageForm from "@/app/component/SubmitForm";
+import SubmitPageForm from "@/app/component/SubmitArticleForm";
 import DataInterface from "@/app/interface/IArticle";
 import IArticle from "@/app/interface/IArticle";
 
