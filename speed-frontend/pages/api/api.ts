@@ -7,11 +7,11 @@ import IArticle from "@/app/interface/IArticle";
  * @returns {any}: void
  */
 
-const isHost: boolean = true;
+const isHost: boolean = false;
 
 const hostAddress: string | void = (isHost)  ? process.env.NEXT_PUBLIC_HOST_ADDRESS : process.env.NEXT_PUBLIC_BACKEND_LOCAL_ADDRESS;
 
-export async function CreateArticle(article:IArticle){
+export async function CreateArticle(article:any){
     try{
         const response = await axios.post(`${hostAddress}article/upload/`, article,{
             headers: {

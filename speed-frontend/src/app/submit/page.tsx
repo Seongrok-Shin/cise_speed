@@ -21,8 +21,7 @@ const SubmitPage = () => {
     status: false,
   })
 
-  const [data, setData] = useState<IArticle>({
-    id: '',
+  const [data, setData] = useState<any>({
     title: '',
     authors: [],
     journal: '',
