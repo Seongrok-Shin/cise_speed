@@ -1,3 +1,4 @@
+import { Article } from "../../../types/article.interface";
 import AlertDialog from "./Alert";
 import Header from "./Header";
 
@@ -23,14 +24,14 @@ export function AdminPageForm({ title, message, buttonValue, status }: any, clos
                             </tr>
                         </thead>
                         <tbody>
-                            {modeQueue.map((result: any, i: number): any => {
+                            {modeQueue.map((result: Article, i: number): any => {
                                 return (
                                     <tr key={i}>
                                         <td className={tableStyle}>{result.title}</td>
                                         <td className={tableStyle}>{result.authors}</td>
                                         <td className={tableStyle}>{result.year}</td>
                                         <td className={tableStyle}>{result.journal}</td>
-                                        <td className={tableStyle}>{result.doi}</td>
+                                        <td className={tableStyle}>{result.DOI}</td>
                                         <td className={tableStyle}>{result.claim}</td>
                                         <td className={tableStyle}>{result.evidence}</td>
                                         <td className={tableStyle}>{(result.is_approved.isAnalyst && result.is_approved.isModerator) ? "Verified" : "Unverified"}</td>
