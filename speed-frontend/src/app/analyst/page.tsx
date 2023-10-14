@@ -22,9 +22,9 @@ export default function AnalystView() {
   useEffect(() => {
     document.body.style.backgroundColor = "#0332CB";
     document.title = "analyst view"
-    document.body.style.backgroundImage = "url(assets/background.png)";
-    document.body.style.backgroundRepeat = "no-repeat";
-    document.body.style.backgroundSize = "cover";
+    document.body.style.setProperty("background-image", "url(assets/background.png)");
+    document.body.style.setProperty("background-repeat", "no-repeat");
+    document.body.style.setProperty("background-size", "cover");
     if (modeQueue.length === 0) { // Check if modeQueue is empty
       GetArticles().then((response: any) => {
         setArticles(response.article);

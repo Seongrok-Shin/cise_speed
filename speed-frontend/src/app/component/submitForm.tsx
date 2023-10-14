@@ -3,6 +3,7 @@ import IArticle from "../interface/IArticle";
 import React from "react";
 import Header from "./Header";
 import AlertDialog from "./Alert";
+import BackgroundImage from "./background";
 
 /**
  * @author @Seongrok-Shin
@@ -174,8 +175,13 @@ function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { 
             </button>
           </div>
         </form>
-      </div></>
-  );
+
+        <div className="absolute w-full py-2.5 bottom-0 inset-x-0 text-white text-xs text-center leading-4">
+          © 2023 by SPEED DATABASE Powered and secured by AUT
+        </div>
+      </div>
+
+      );
 }
 
-export default SubmitPageForm;
+      export default SubmitPageForm;

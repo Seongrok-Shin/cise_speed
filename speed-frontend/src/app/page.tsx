@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Header from "./component/Header";
 import MediaCard from "./component/Card";
 import { useRouter } from "next/navigation";
+import BackgroundImage from "./component/background";
 export default function Home() {
   const midParagraphStyle: string = "text-white text-4xl text-center";
   const smallParagraphStyle: string = "text-white text-4xl text-center mb-[35px]"
@@ -12,28 +13,59 @@ export default function Home() {
 
   useEffect(() => {
     document.body.style.backgroundColor = "#0332CB";
-    document.body.style.backgroundImage = "url(assets/background.png)";
-    document.body.style.backgroundRepeat = "no-repeat";
-    document.body.style.backgroundSize = "cover";
   }, [])
-
+  const searchPage = () => {
+    router.push("/search");
+  };
+  const moderatorPage = () => {
+    router.push("/moderator");
+  };
+  const analystPage = () => {
+    router.push("/analyst");
+  };
 
   return (
-    <>
+    <div className="bg-[#0332CB]">
       <Header />
-      <div className="z-10 w-full justify-between font-mono text-sm lg:flex">
-        <div className="w-1/2 m-auto">
-          <h1 className={midParagraphStyle}>Welcome to</h1>
-          <h1 className={headerStyle}>SPEED DATABASE</h1>
-          <h1 className={smallParagraphStyle}>My Blog on Education & Teaching</h1>
-          <div className="grid-cols-3 grid justify-items-center ">
-            {MediaCard({ title: "Search", description: "Welcome to the Search", imageSrc: "/assets/search.png", buttonValue: "View Search" }, () => { router.push('search') })}
-            {MediaCard({ title: "Moderator", description: "Welcome to the Moderator", imageSrc: "/assets/mode.png", buttonValue: "View Moderator" }, () => { router.push('moderator') })}
-            {MediaCard({ title: "Analysis", description: "Welcome to the Analysis", imageSrc: "/assets/analyst.png", buttonValue: "View Analyst" }, () => { router.push('analyst') })}
-          </div>
+      <div className="overflow-hidden">
+        <div className="absolute w-full font-bold font-sans py-48 px-52 text-white text-3xl leading-4">
+          <p className="py-4">Welcome to</p>
+          <p className="py-4">SPEED DATABASE</p>
+          <p className="py-4">MY BLOG ON EDUCATION</p>
+          <p className="py-4">AND TECHNOLOGY</p>
         </div>
-
+        <div className="absolute py-48 inset-x-0 font-sans text-white text-xl leading-4 items-center flex flex-col">
+          <button
+            className="font-bold py-8 px-10 hover:bg-[#0332CB] bg-white rounded-full bg-opacity-25"
+            onClick={searchPage}
+          >
+            <img src="/assets/magnifier.png" className="py-2 bg-opacity-0" />
+            Searching View
+          </button>
+        </div>
+        <div className="absolute bottom-24 inset-x-0 font-sans text-white text-xl leading-4 items-center flex flex-col">
+          <button
+            className="font-bold py-8 px-10 hover:bg-[#0332CB] bg-white rounded-full bg-opacity-25"
+            onClick={moderatorPage}
+          >
+            <img src="/assets/magnifier.png" className="py-2 bg-opacity-0" />
+            Moderator View
+          </button>
+        </div>
+        <div className="absolute bottom-[240px] ml-[1300px] font-sans text-white text-xl leading-4 items-center flex flex-col">
+          <button
+            className="font-bold py-8 px-10 hover:bg-[#0332CB] bg-white rounded-full bg-opacity-25"
+            onClick={analystPage}
+          >
+            <img src="/assets/magnifier.png" className="py-2 bg-opacity-0" />
+            Analysting View
+          </button>
+        </div>
+        {BackgroundImage("/assets/books.png")}
+        <div className="absolute w-full py-2.5 bottom-0 inset-x-0 text-white text-xs text-center leading-4">
+          © 2023 by SPEED DATABASE Powered and secured by AUT
+        </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,5 +1,6 @@
 import AlertDialog from "./Alert";
 import Header from "./Header";
+import BackgroundImage from "./background";
 
 export function ModeratorPageForm({ title, message, buttonValue, status }: any, closeDialog: any, modeQueue: any, tableStyle: any, buttonStyle: any, modAccept: any, modReject: any) {
     return (<>
@@ -42,6 +43,9 @@ export function ModeratorPageForm({ title, message, buttonValue, status }: any, 
                     </table>
                 )}
             </div>
+        </div>
+        <div className="absolute w-full py-2.5 bottom-0 inset-x-0 text-white text-xs text-center leading-4">
+            © 2023 by SPEED DATABASE Powered and secured by AUT
         </div>
     </>);
 }
