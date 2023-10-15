@@ -50,6 +50,7 @@ const SubmitPage = () => {
   useEffect(() => {
     document.body.style.backgroundColor = "#0332CB";
     document.title = "submission form";
+    document.body.style.overflow = "visible";
   }, [dialog])
 
   function closeDialog() {
@@ -59,6 +60,7 @@ const SubmitPage = () => {
       buttonValue: "",
       status: false,
     });
+    router.push('search');
   }
 
   const handleChange = (e: any) => {
@@ -85,14 +87,14 @@ const SubmitPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await CreateArticle(data);
+      await CreateArticle(data);
       setDialog({
         title: "Article Accepted",
         message: "Sucessfully submitted to the queue.",
         buttonValue: "Confirm",
         status: true,
       });
-      router.push('search');
+
     } catch (err: any) {
       setDialog({
         title: "Article Rejected",
