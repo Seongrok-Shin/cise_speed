@@ -2,11 +2,11 @@ import IArticle from "../interface/IArticle";
 import AlertDialog from "./Alert";
 import BackgroundImage from "./Background";
 import Header from "./Header";
-export function AnalystPageForm({ title, message, buttonValue, status }: any, closeDialog: any, modeQueue: any, tableStyle: any, buttonAcceptStyle: any, buttonRejectStyle: any, modAccept: any, modReject: any) {
+export function AnalystPageForm({ title, message, firstButtonValue, secondButtonValue, status }: any, closeDialog: any, openDialog: any, modeQueue: any, tableStyle: any, buttonAcceptStyle: any, analystConfirm: any, handleChange: any, data: IArticle,) {
     const resultStyle: string = `text-left flex flex-col items-center w-full h-[32rem] overflow-y-scroll`;
     return (<>
         <Header />
-        {AlertDialog(title, message, buttonValue, status, closeDialog)}
+        {AlertDialog(title, message, firstButtonValue, secondButtonValue, status, closeDialog, openDialog)}
         <div className=" absolute w-full flex justify-center">
             <div className={resultStyle}>
                 {modeQueue.length >= 0 && (
@@ -16,9 +16,9 @@ export function AnalystPageForm({ title, message, buttonValue, status }: any, cl
                                 <th className={tableStyle}>Title</th>
                                 <th className={tableStyle}>Author/s</th>
                                 <th className={tableStyle}>Publication Year</th>
+                                <th className={tableStyle}>SE Method</th>
                                 <th className={tableStyle}>Moderator</th>
                                 <th className={tableStyle}>Approval</th>
-                                <th className={tableStyle}>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,9 +28,18 @@ export function AnalystPageForm({ title, message, buttonValue, status }: any, cl
                                         <td className={tableStyle}>{result.title}</td>
                                         <td className={tableStyle}>{result.authors}</td>
                                         <td className={tableStyle}>{result.year}</td>
+                                        <td className={tableStyle}> <input
+                                            name="se_practice"
+                                            type="text"
+                                            placeholder="Enter SE methods"
+                                            onChange={handleChange}
+                                            value={data.se_practice}
+                                            className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 sm:text-xs md:text-md lg:text-lg px-1 py-2"
+                                            required
+                                        /></td>
                                         <td className={tableStyle}>{(result.is_approved.isModerator) ? "Approved" : "Unapproved"}</td>
-                                        <td className={tableStyle}><input className={buttonAcceptStyle} type="button" value="Accept" onClick={() => modAccept(result.id)} /></td>
-                                        <td className={tableStyle}><input className={buttonRejectStyle} type="button" value="Deny" onClick={() => modReject(result.id)} /></td>
+                                        <td className={tableStyle}><input className={buttonAcceptStyle} type="button" value="Accept" onClick={() => { analystConfirm(result.id) }} /></td>
+
                                     </tr>
                                 );
                             })}

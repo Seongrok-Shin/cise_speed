@@ -40,6 +40,7 @@ export class ArticleService {
       result: article.result,
       evidence: article.evidence,
       research: article.research,
+      se_practice: article.se_practice,
       participant: article.participant,
       date: article.date,
       is_approved: {
@@ -104,16 +105,28 @@ export class ArticleService {
     }
   }
 
+  async updateSEMethod(id: string, updatedSEMethod: any) {
+    try {
+      const article: any = (await this.articleModel.findById(id)) as IArticle;
+      if (updatedSEMethod) {
+        article.se_practice = updatedSEMethod;
+        article.save();
+      }
+    } catch (err: any) {
+      throw new NotFoundException(`couldn't update se method ${err}`);
+    }
+  }
+
   async getSEMethods(): Promise<Array<string>> {
     try {
-      const methods: Array<string> = [
-        'Mob Programming',
-        'Pair Programming',
-        'Test Driven Development (TDD)',
-        'Agile Software Development',
-        'Continuous Integration (CI)',
-      ];
-      return methods;
+      const methods: Array<string> = [];
+      const articles = await this.articleModel.find().exec();
+      articles.map((article: IArticle) => {
+        methods.push(article.se_practice);
+      });
+      return methods.filter(
+        (value: any, index: number) => methods.indexOf(value) === index,
+      );
     } catch (err: any) {
       throw new NotFoundException(`couldn't get the SE methods ${err}`);
     }

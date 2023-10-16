@@ -10,7 +10,8 @@ export default function ModeratorView() {
   const [dialog, setDialog] = useState({
     title: "",
     message: "",
-    buttonValue: "",
+    firstButtonValue: "",
+    secondButtonValue: "",
     status: false,
   });
   const tableStyle: string = " sm:w-[45px] md:w-[80px] lg:w-[140px] border-solid border-gray-300 border-2 pr-2 pl-2  bg-zinc-50 sm:text-xs md:text-md lg:text-lg break-all";
@@ -30,14 +31,15 @@ export default function ModeratorView() {
         setModQueue(filteredArticles);
       });
     }
-  }, [modeQueue]);
+  }, []);
 
 
   function closeDialog() {
     setDialog({
       title: "",
       message: "",
-      buttonValue: "",
+      firstButtonValue: "",
+      secondButtonValue: "",
       status: false,
     });
   }
@@ -57,7 +59,8 @@ export default function ModeratorView() {
     setDialog({
       title: "Moderator Accepted",
       message: "Sucessfully added to the Analyst Queue",
-      buttonValue: "Confirm",
+      firstButtonValue: "Confirm",
+      secondButtonValue: "",
       status: true,
     });
   }
@@ -77,10 +80,11 @@ export default function ModeratorView() {
     setDialog({
       title: "Article Rejected",
       message: "Unsuccessfully rejected by the Moderator",
-      buttonValue: "Confirm",
+      firstButtonValue: "Confirm",
+      secondButtonValue: "",
       status: true,
     });
   }
 
-  return ModeratorPageForm(dialog, closeDialog, modeQueue, tableStyle, buttonAcceptStyle, buttonRejectStyle, modAccept, modReject);
+  return ModeratorPageForm(dialog, closeDialog, null, modeQueue, tableStyle, buttonAcceptStyle, buttonRejectStyle, modAccept, modReject);
 }

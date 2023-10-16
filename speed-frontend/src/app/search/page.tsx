@@ -12,7 +12,8 @@ export default function SearchView() {
   const [dialog, setDialog] = useState({
     title: "",
     message: "",
-    buttonValue: "",
+    firstButtonValue: "",
+    secondButtonValue: "",
     status: false,
   })
 
@@ -27,7 +28,8 @@ export default function SearchView() {
     setDialog({
       title: "",
       message: "",
-      buttonValue: "",
+      firstButtonValue: "",
+      secondButtonValue: "",
       status: false,
     });
   }
@@ -56,7 +58,8 @@ export default function SearchView() {
         setDialog({
           title: "Search Not Found",
           message: `${search} has no articles`,
-          buttonValue: "Confirm",
+          firstButtonValue: "Confirm",
+          secondButtonValue: "",
           status: true,
         });
       });
@@ -75,7 +78,8 @@ export default function SearchView() {
         setDialog({
           title: "Search Not Found",
           message: `${search} has no articles`,
-          buttonValue: "Confirm",
+          firstButtonValue: "Confirm",
+          secondButtonValue: "",
           status: true,
         });
       });
@@ -139,7 +143,8 @@ export default function SearchView() {
         setDialog({
           title: "Not Found Software Engineering Method",
           message: `${value} has no articles`,
-          buttonValue: "Confirm",
+          firstButtonValue: "Confirm",
+          secondButtonValue: "",
           status: true,
         });
       });
@@ -153,5 +158,5 @@ export default function SearchView() {
     getResults();
   }, []);
 
-  return SearchPageForm(dialog, closeDialog, handleSearchButton, handlePracticeMethods, handleYearFilter, handleChangeSearch, handleAddArticle, searchResult, search, searchStyle, tableStyle);
+  return SearchPageForm(dialog, closeDialog, null, handleSearchButton, handlePracticeMethods, handleYearFilter, handleChangeSearch, handleAddArticle, searchResult, search, searchStyle, tableStyle);
 }

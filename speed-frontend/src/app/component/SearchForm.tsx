@@ -5,7 +5,7 @@ import DropdownFilter from "./DropDownCategory";
 import DropdownYearFilter from "./DropDownPublicationYear";
 import Header from "./Header";
 
-export function SearchPageForm({ title, message, buttonValue, status }: any, closeDialog: any,
+export function SearchPageForm({ title, message, firstButtonValue, secondButtonValue, status }: any, closeDialog: any, openDialog: any,
     handleSearchButton: any,
     handlePracticeMethods: any,
     handleYearFilter: any,
@@ -19,7 +19,7 @@ export function SearchPageForm({ title, message, buttonValue, status }: any, clo
     const resultStyle: string = `text-left flex flex-col items-center w-full h-[32rem] overflow-y-scroll`;
     return (<>
         <Header />
-        {AlertDialog(title, message, buttonValue, status, closeDialog)}
+        {AlertDialog(title, message, firstButtonValue, secondButtonValue, status, closeDialog, openDialog)}
         <div>
             <main className="absolute flex justify-center w-full">
                 <div className="flex flex-col w-full">
