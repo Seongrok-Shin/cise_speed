@@ -25,23 +25,8 @@ export class ArticleController {
    * @returns {any}: void
    */
   @Post('upload')
-  async createArticle(
-    @Body() createArticleDto: CreateArticleDTO,
-    @Res() response,
-  ) {
-    try {
-      const article = await this.articleService.CreateArticle(createArticleDto);
-      return response.status(HttpStatus.OK).json({
-        message: 'Article has successfully created',
-        article,
-      });
-    } catch (err: any) {
-      return response.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: 400,
-        message: 'There was an error creating the article',
-        error: `Bad Request: Can not create ${err}`,
-      });
-    }
+  async createArticle(@Body() createArticleDto: CreateArticleDTO) {
+    return await this.articleService.CreateArticle(createArticleDto);
   }
 
   /**

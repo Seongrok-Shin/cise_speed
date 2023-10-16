@@ -42,7 +42,7 @@ export default function AnalystView() {
   }, [data]);
 
   function modAccept(id: string) {
-    const methods = { se_practice: data.targetValue };
+    const methods = { se_practice: data.targetValue.trim() };
     UpdatePracticeMethod(id, methods);
     const accepted = {
       is_approved: {
@@ -101,7 +101,6 @@ export default function AnalystView() {
   }
   function openDialog() {
     modAccept(data.id);
-    console.log(data.tagetValue);
     setDialog({
       title: "",
       message: "",
