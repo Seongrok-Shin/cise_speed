@@ -12,6 +12,7 @@ import {
 import { CreateArticleDTO } from '../dto/create-article.dto';
 import { ArticleService } from '../service/article.service';
 import { UpdatedArticleDTO } from '../dto/updated-article.dto';
+import { PracticeMethodDTO } from '../dto/updated-methods-article.dto';
 
 @Controller('article')
 export class ArticleController {
@@ -24,8 +25,23 @@ export class ArticleController {
    * @returns {any}: void
    */
   @Post('upload')
-  async createArticle(@Body() createArticleDto: CreateArticleDTO) {
-    return this.articleService.CreateArticle(createArticleDto);
+  async createArticle(
+    @Body() createArticleDto: CreateArticleDTO,
+    @Res() response,
+  ) {
+    try {
+      const article = await this.articleService.CreateArticle(createArticleDto);
+      return response.status(HttpStatus.OK).json({
+        message: 'Article has successfully created',
+        article,
+      });
+    } catch (err: any) {
+      return response.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: 400,
+        message: 'There was an error creating the article',
+        error: `Bad Request: Can not create ${err}`,
+      });
+    }
   }
 
   /**
@@ -87,6 +103,31 @@ export class ArticleController {
         statusCode: 404,
         message: 'There was an error deleting the article',
         error: `Bad Request: Cant find article ${err}`,
+      });
+    }
+  }
+
+  @Patch('methods/update/:id')
+  async updateSEMethods(
+    @Res() response,
+    @Param('id') id: string,
+    @Body() updateSEMethod: PracticeMethodDTO,
+  ) {
+    try {
+      const article = this.articleService.updateSEMethod(
+        id,
+        updateSEMethod.se_practice,
+      );
+      return response.status(HttpStatus.OK).json({
+        message: `Article has successfully been updated by software engineering practice method!`,
+        article,
+      });
+    } catch (err: any) {
+      return response.status(HttpStatus.NOT_FOUND).json({
+        statusCode: 404,
+        message:
+          'There was an error updating the software engineering practice method',
+        error: `Bad Request: Cant find se practice method ${err}`,
       });
     }
   }

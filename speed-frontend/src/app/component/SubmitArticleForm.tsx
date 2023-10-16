@@ -14,12 +14,12 @@ import BackgroundImage from "./Background";
  * @returns {any}
  */
 
-function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { title, message, buttonValue, status }: any, closeDialog: any) {
+function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { title, message, firstButtonValue, secondButtonValue, status }: any, closeDialog: any, openDialog: any,) {
   const resultStyle: string = `absolute flex flex-col items-center w-full `;
   return (
     <>
       <Header />
-      {AlertDialog(title, message, buttonValue, status, closeDialog)}
+      {AlertDialog(title, message, firstButtonValue, secondButtonValue, status, closeDialog, openDialog)}
       <div className={resultStyle}>
         <form onSubmit={handleSubmit}>
           <div className="py-2">
@@ -157,15 +157,6 @@ function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { 
               className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
               required
             />
-          </div>
-          <div className="py-2" >
-            <select name="se_practice" onChange={handleChange} className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2" required >
-              <option>Mob Programming</option>
-              <option>Pair Programming</option>
-              <option>Test Driven Development (TDD)</option>
-              <option>Agile Software Development</option>
-              <option>Continuous Integration (CI)</option>
-            </select>
           </div>
           <div className="py-2" >
             <input

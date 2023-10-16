@@ -3,11 +3,11 @@ import AlertDialog from "./Alert";
 import BackgroundImage from "./Background";
 import Header from "./Header";
 
-export function ModeratorPageForm({ title, message, buttonValue, status }: any, closeDialog: any, modeQueue: any, tableStyle: any, buttonAcceptStyle: any, buttonRejectStyle: any, modAccept: any, modReject: any) {
+export function ModeratorPageForm({ title, message, firstButtonValue, secondButtonValue, status }: any, closeDialog: any, openDialog: any, modeQueue: any, tableStyle: any, buttonAcceptStyle: any, buttonRejectStyle: any, modAccept: any, modReject: any) {
     const resultStyle: string = `text-left flex flex-col items-center w-full h-[32rem] overflow-y-scroll`;
     return (<>
         <Header />
-        {AlertDialog(title, message, buttonValue, status, closeDialog)}
+        {AlertDialog(title, message, firstButtonValue, secondButtonValue, status, closeDialog, openDialog)}
         <div className=" absolute w-full flex justify-center">
             <div className={resultStyle}>
                 {modeQueue.length >= 0 && (
@@ -38,7 +38,7 @@ export function ModeratorPageForm({ title, message, buttonValue, status }: any, 
                                         <td className={tableStyle}>{result.DOI}</td>
                                         <td className={tableStyle}>{result.volume}</td>
                                         <td className={tableStyle}>{result.pages}</td>
-                                        <td className={tableStyle}><input className={buttonAcceptStyle} type="button" value="Accept" onClick={() => modAccept(result.id)} /></td>
+                                        <td className={tableStyle}><input className={buttonAcceptStyle} type="button" value="Confirm" onClick={() => modAccept(result.id)} /></td>
                                         <td className={tableStyle}><input className={buttonRejectStyle} type="button" value="Deny" onClick={() => modReject(result.id)} /></td>
                                     </tr>
                                 );

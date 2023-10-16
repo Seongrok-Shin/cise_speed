@@ -3,11 +3,11 @@ import AlertDialog from "./Alert";
 import BackgroundImage from "./Background";
 import Header from "./Header";
 
-export function AdminPageForm({ title, message, buttonValue, status }: any, closeDialog: any, modeQueue: any, tableStyle: any, buttonRejectStyle: any, cleanArticle: any) {
+export function AdminPageForm({ title, message, firstButtonValue, secondButtonValue, status }: any, closeDialog: any, openDialog: any, modeQueue: any, tableStyle: any, buttonRejectStyle: any, cleanArticle: any) {
     const resultStyle: string = `text-left flex flex-col items-center w-full h-[32rem] overflow-y-scroll`;
     return (<>
         <Header />
-        {AlertDialog(title, message, buttonValue, status, closeDialog)}
+        {AlertDialog(title, message, firstButtonValue, secondButtonValue, status, closeDialog, openDialog)}
         <div className="absolute w-full flex justify-center">
             <div className={resultStyle}>
                 {modeQueue.length >= 0 && (
@@ -21,7 +21,7 @@ export function AdminPageForm({ title, message, buttonValue, status }: any, clos
                                 <th className={tableStyle}>Source</th>
                                 <th className={tableStyle}>DOI</th>
                                 <th className={tableStyle}>Claim</th>
-                                <th className={tableStyle}>Evidence</th>
+                                <th className={tableStyle}>SE methods</th>
                                 <th className={tableStyle}>Verification</th>
                                 <th className={tableStyle}>Action</th>
                             </tr>
@@ -37,7 +37,7 @@ export function AdminPageForm({ title, message, buttonValue, status }: any, clos
                                         <td className={tableStyle}>{result.journal}</td>
                                         <td className={tableStyle}>{result.DOI}</td>
                                         <td className={tableStyle}>{result.claim}</td>
-                                        <td className={tableStyle}>{result.evidence}</td>
+                                        <td className={tableStyle}>{result.se_practice}</td>
                                         <td className={tableStyle}>{(result.is_approved.isAnalyst && result.is_approved.isModerator) ? "Verified" : "Unverified"}</td>
                                         <td className={tableStyle}><input className={buttonRejectStyle} type="button" value="Delete" onClick={() => cleanArticle(result.id)} /></td>
                                     </tr>

@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Header from "../component/Header";
-import { DeleteArticle, GetArticles, UpdateArticleApproval } from "../../../pages/api/api";
+import { DeleteArticle, GetArticles } from "../../../pages/api/api";
 import { AdminPageForm } from "../component/AdminForm";
 export default function Admin() {
     const [modeQueue, setModQueue] = useState<any[]>([]);
@@ -12,7 +11,8 @@ export default function Admin() {
     const [dialog, setDialog] = useState({
         title: "",
         message: "",
-        buttonValue: "",
+        firstButtonValue: "",
+        secondButtonValue: "",
         status: false,
     })
     useEffect(() => {
@@ -27,16 +27,14 @@ export default function Admin() {
         }
     }, []);
     useEffect(() => {
-        if (modeQueue.length > 0) {
-            console.log('modeQueue has changed:', modeQueue);
-        }
     }, [modeQueue])
 
     function closeDialog() {
         setDialog({
             title: "",
             message: "",
-            buttonValue: "",
+            firstButtonValue: "",
+            secondButtonValue: "",
             status: false,
         });
     }
@@ -47,11 +45,12 @@ export default function Admin() {
         setDialog({
             title: "Article Action",
             message: "Successfuly deleted the article in the database",
-            buttonValue: "Confirm",
+            firstButtonValue: "Confirm",
+            secondButtonValue: "",
             status: true,
         });
     }
 
 
-    return AdminPageForm(dialog, closeDialog, modeQueue, tableStyle, buttonRejectStyle, cleanArticle);
+    return AdminPageForm(dialog, closeDialog, null, modeQueue, tableStyle, buttonRejectStyle, cleanArticle);
 }

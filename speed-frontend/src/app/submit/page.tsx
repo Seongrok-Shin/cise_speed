@@ -17,10 +17,11 @@ const SubmitPage = () => {
   const [dialog, setDialog] = useState({
     title: "",
     message: "",
-    buttonValue: "",
+    firstButtonValue: "",
+    secondButtonValue: "",
     status: false,
   })
-
+  const initialDate = new Date().toLocaleDateString();
   const [data, setData] = useState<any>({
     title: '',
     authors: [],
@@ -35,7 +36,8 @@ const SubmitPage = () => {
     evidence: '',
     research: '',
     participant: '',
-    se_practice: 'Mob Programming',
+    date: `${initialDate.toString()}`,
+    se_practice: 'Others',
     is_approved: {
       isModerator: false,
       isAnalyst: false,
@@ -57,7 +59,8 @@ const SubmitPage = () => {
     setDialog({
       title: "",
       message: "",
-      buttonValue: "",
+      firstButtonValue: "",
+      secondButtonValue: "",
       status: false,
     });
     router.push('search');
@@ -76,6 +79,12 @@ const SubmitPage = () => {
         ...data,
         authors: authorsArray,
       });
+    }
+    else if (e.target.name === "date") {
+      setData({
+        ...data,
+        date: e.target.value,
+      })
     } else {
       setData({
         ...data,
@@ -88,10 +97,12 @@ const SubmitPage = () => {
     setLoading(true);
     try {
       await CreateArticle(data);
+
       setDialog({
         title: "Article Accepted",
         message: "Sucessfully submitted to the queue.",
-        buttonValue: "Confirm",
+        firstButtonValue: "Confirm",
+        secondButtonValue: "",
         status: true,
       });
 
@@ -99,7 +110,8 @@ const SubmitPage = () => {
       setDialog({
         title: "Article Rejected",
         message: `Unsuccessfully submitted to the queue. ${err}`,
-        buttonValue: "Confirm",
+        firstButtonValue: "Confirm",
+        secondButtonValue: "",
         status: true,
       });
       setError(err);
@@ -108,7 +120,7 @@ const SubmitPage = () => {
   };
 
 
-  return SubmitPageForm(handleChange, handleSubmit, data, dialog, closeDialog);
+  return SubmitPageForm(handleChange, handleSubmit, data, dialog, closeDialog, null);
 };
 
 export default SubmitPage;

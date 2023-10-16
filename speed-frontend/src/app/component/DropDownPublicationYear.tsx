@@ -21,7 +21,7 @@ const DropdownYearFilter = ({ dropDownYearFilter }: any) => {
             setSortedYear(tempYear.sort((a: any, b: any) => b - a));
         }
         fetchArticles();
-    }, [sortedYear]);
+    }, [articles, sortedYear, years]);
 
     const handleChangeFilter = (event: any) => {
         setFilter(event.target.value);
