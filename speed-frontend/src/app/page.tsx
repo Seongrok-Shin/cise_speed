@@ -36,7 +36,7 @@ export default function Home() {
           <p>MY BLOG ON EDUCATION</p>
           <p>AND TECHNOLOGY ❞</p>
         </div>
-        <div className="absolute top-[500px] inset-x-0 flex-row flex justify-center font-sans text-center text-white ">
+        <div className="absolute sm:top-[500px] md:top-[400px] lg:top-[450px] inset-x-0 flex-row flex justify-center font-sans text-center text-white ">
           <button className="font-bold xl:py-8 xl:px-10 lg:py-8 lg:px-10 hover:text-black">
             <img src="/assets/search.png" alt="search" onClick={searchPage} />
             Search View
