@@ -12,11 +12,12 @@ export default function SearchView() {
   const [dialog, setDialog] = useState({
     title: "",
     message: "",
-    buttonValue: "",
+    firstButtonValue: "",
+    secondButtonValue: "",
     status: false,
   })
 
-  const tableStyle: string = "w-32 border-solid border-blue-700 border-2 pr-2 pl-2 bg-zinc-50 ";
+  const tableStyle: string = " sm:w-[45px] md:w-[80px] lg:w-[140px] border-solid border-gray-300 border-2 pr-2 pl-2  bg-zinc-50 sm:text-xs md:text-md lg:text-lg break-all";
   const searchStyle: string = "px-5 rounded-xl border-2 border-gray-300 focus:outline-none focus: border - black text - base font - medium text - gray - 700 hover: bg-gray-100   bg-zinc-50 font-bold";
   const handleAddArticle = (event: any) => {
     event.preventDefault();
@@ -27,7 +28,8 @@ export default function SearchView() {
     setDialog({
       title: "",
       message: "",
-      buttonValue: "",
+      firstButtonValue: "",
+      secondButtonValue: "",
       status: false,
     });
   }
@@ -56,7 +58,8 @@ export default function SearchView() {
         setDialog({
           title: "Search Not Found",
           message: `${search} has no articles`,
-          buttonValue: "Confirm",
+          firstButtonValue: "Confirm",
+          secondButtonValue: "",
           status: true,
         });
       });
@@ -75,7 +78,8 @@ export default function SearchView() {
         setDialog({
           title: "Search Not Found",
           message: `${search} has no articles`,
-          buttonValue: "Confirm",
+          firstButtonValue: "Confirm",
+          secondButtonValue: "",
           status: true,
         });
       });
@@ -139,7 +143,8 @@ export default function SearchView() {
         setDialog({
           title: "Not Found Software Engineering Method",
           message: `${value} has no articles`,
-          buttonValue: "Confirm",
+          firstButtonValue: "Confirm",
+          secondButtonValue: "",
           status: true,
         });
       });
@@ -149,11 +154,9 @@ export default function SearchView() {
   useEffect(() => {
     document.body.style.backgroundColor = "#0332CB";
     document.title = "search view";
-    document.body.style.setProperty("background-image", "url(assets/background.png)");
-    document.body.style.setProperty("background-repeat", "no-repeat");
-    document.body.style.setProperty("background-size", "cover");
+    document.body.style.overflow = "hidden";
     getResults();
   }, []);
 
-  return SearchPageForm(dialog, closeDialog, handleSearchButton, handlePracticeMethods, handleYearFilter, handleChangeSearch, handleAddArticle, searchResult, search, searchStyle, tableStyle);
+  return SearchPageForm(dialog, closeDialog, null, handleSearchButton, handlePracticeMethods, handleYearFilter, handleChangeSearch, handleAddArticle, searchResult, search, searchStyle, tableStyle);
 }

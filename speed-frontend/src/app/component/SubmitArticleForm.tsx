@@ -3,6 +3,7 @@ import IArticle from "../interface/IArticle";
 import React from "react";
 import Header from "./Header";
 import AlertDialog from "./Alert";
+import BackgroundImage from "./Background";
 
 /**
  * @author @Seongrok-Shin
@@ -13,12 +14,13 @@ import AlertDialog from "./Alert";
  * @returns {any}
  */
 
-function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { title, message, buttonValue, status }: any, closeDialog: any) {
+function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { title, message, firstButtonValue, secondButtonValue, status }: any, closeDialog: any, openDialog: any,) {
+  const resultStyle: string = `absolute flex flex-col items-center w-full `;
   return (
     <>
       <Header />
-      {AlertDialog(title, message, buttonValue, status, closeDialog)}
-      <div className="flex flex-col items-center">
+      {AlertDialog(title, message, firstButtonValue, secondButtonValue, status, closeDialog, openDialog)}
+      <div className={resultStyle}>
         <form onSubmit={handleSubmit}>
           <div className="py-2">
             <input
@@ -157,13 +159,14 @@ function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { 
             />
           </div>
           <div className="py-2" >
-            <select name="se_practice" onChange={handleChange} className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2" required >
-              <option>Mob Programming</option>
-              <option>Pair Programming</option>
-              <option>Test Driven Development (TDD)</option>
-              <option>Agile Software Development</option>
-              <option>Continuous Integration (CI)</option>
-            </select>
+            <input
+              name="date"
+              type="date"
+              onChange={handleChange}
+              value={data.date}
+              className="w-full rounded-xl border-2 border-gray-300 focus:outline-none focus:border-indigo-500 text-base px-4 py-2"
+              required
+            />
           </div>
           <div>
             <button
@@ -174,10 +177,10 @@ function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { 
             </button>
           </div>
         </form>
-
-        <div className="absolute w-full py-2.5 bottom-0 inset-x-0 text-white text-xs text-center leading-4">
-          © 2023 by SPEED DATABASE Powered and secured by AUT
-        </div>
+      </div>
+      {BackgroundImage("/assets/background.png", "absolute w-full h-full z-[-1]")}
+      <div className="absolute w-full py-2.5 bottom-0 inset-x-0 text-white text-xs text-center leading-4">
+        © 2023 by SPEED DATABASE Powered and secured by AUT
       </div>
     </>
   );

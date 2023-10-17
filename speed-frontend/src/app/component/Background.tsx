@@ -1,10 +1,9 @@
 import React from "react";
-import Image from "next/image";
-const BackgroundImage = (imgSrc: string) => {
+const BackgroundImage = (imgSrc: string, properties: string) => {
   return (
-    <div>
-      <Image src={imgSrc} alt="background" width="0" height="0" sizes="100vw" />
-    </div>
+    <>
+      <img src={imgSrc} alt="background" className={properties} />
+    </>
   );
 };
 export default BackgroundImage;

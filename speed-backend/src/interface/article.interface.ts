@@ -21,4 +21,5 @@ export interface IArticle extends Document {
     isAnalyst: boolean;
     isAnaRejected: boolean;
   };
+  readonly date: string;
 }

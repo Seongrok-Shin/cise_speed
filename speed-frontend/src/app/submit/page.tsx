@@ -17,12 +17,12 @@ const SubmitPage = () => {
   const [dialog, setDialog] = useState({
     title: "",
     message: "",
-    buttonValue: "",
+    firstButtonValue: "",
+    secondButtonValue: "",
     status: false,
   })
-
-  const [data, setData] = useState<IArticle>({
-    id: '',
+  const initialDate = new Date().toLocaleDateString();
+  const [data, setData] = useState<any>({
     title: '',
     authors: [],
     journal: '',
@@ -36,7 +36,8 @@ const SubmitPage = () => {
     evidence: '',
     research: '',
     participant: '',
-    se_practice: 'Mob Programming',
+    date: `${initialDate.toString()}`,
+    se_practice: 'Others',
     is_approved: {
       isModerator: false,
       isAnalyst: false,
@@ -50,19 +51,19 @@ const SubmitPage = () => {
 
   useEffect(() => {
     document.body.style.backgroundColor = "#0332CB";
-    document.title = "submission form"
-    document.body.style.setProperty("background-image", "url(assets/background.png)");
-    document.body.style.setProperty("background-repeat", "no-repeat");
-    document.body.style.setProperty("background-size", "cover");
+    document.title = "submission form";
+    document.body.style.overflow = "visible";
   }, [dialog])
 
   function closeDialog() {
     setDialog({
       title: "",
       message: "",
-      buttonValue: "",
+      firstButtonValue: "",
+      secondButtonValue: "",
       status: false,
     });
+    router.push('search');
   }
 
   const handleChange = (e: any) => {
@@ -78,6 +79,12 @@ const SubmitPage = () => {
         ...data,
         authors: authorsArray,
       });
+    }
+    else if (e.target.name === "date") {
+      setData({
+        ...data,
+        date: e.target.value,
+      })
     } else {
       setData({
         ...data,
@@ -89,19 +96,22 @@ const SubmitPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await CreateArticle(data);
+      await CreateArticle(data);
+
       setDialog({
         title: "Article Accepted",
         message: "Sucessfully submitted to the queue.",
-        buttonValue: "Confirm",
+        firstButtonValue: "Confirm",
+        secondButtonValue: "",
         status: true,
       });
-      router.push('search');
+
     } catch (err: any) {
       setDialog({
         title: "Article Rejected",
         message: `Unsuccessfully submitted to the queue. ${err}`,
-        buttonValue: "Confirm",
+        firstButtonValue: "Confirm",
+        secondButtonValue: "",
         status: true,
       });
       setError(err);
@@ -110,7 +120,7 @@ const SubmitPage = () => {
   };
 
 
-  return SubmitPageForm(handleChange, handleSubmit, data, dialog, closeDialog);
+  return SubmitPageForm(handleChange, handleSubmit, data, dialog, closeDialog, null);
 };
 
 export default SubmitPage;

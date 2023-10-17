@@ -15,6 +15,7 @@ export const ArticleDTOStub = (): CreateArticleDTO => {
     research: 'case study',
     participant: 'student',
     se_practice: 'Mob Programming',
+    date: '2014-12-24',
     is_approved: {
       isModerator: false,
       isModRejected: false,

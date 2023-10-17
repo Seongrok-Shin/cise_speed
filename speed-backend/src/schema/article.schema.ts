@@ -63,6 +63,9 @@ export class Article {
     isAnalyst: boolean;
     isAnaRejected: boolean;
   };
+
+  @Prop({ required: true, default: '', type: String })
+  date: string;
 }
 
 export const ArticleSchema = SchemaFactory.createForClass(Article);
