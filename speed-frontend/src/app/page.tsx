@@ -31,12 +31,12 @@ export default function Home() {
           alt="homeBackground"
           className="absolute opacity-50 w-full h-full"
         />
-        <div className="absolute w-full font-bold font-sans leading-7 text-center text-white lg:text-3xl lg:py-60 md:text-3xl md:py-50  sm:text-lg sm:py-32 xl:text-3xl xl:py-60 xs:text-sm xs:py-20">
+        <div className="absolute w-full font-bold font-sans leading-7 text-center text-white desktop:text-3xl desktop:py-60 laptop:text-3xl laptop:py-50  tablet:text-lg tablet:py-32 mobile:text-lg">
           <p>❝ Welcome to SPEED DATABASE</p>
           <p>MY BLOG ON EDUCATION</p>
           <p>AND TECHNOLOGY ❞</p>
         </div>
-        <div className="absolute sm:top-[500px] md:top-[400px] lg:top-[450px] inset-x-0 flex-row flex justify-center font-sans text-center text-white ">
+        <div className="absolute mobile:top-[300px] tablet:top-[400px] laptop:top-[400px] desktop:top-[600px] inset-x-0 flex-row flex justify-center font-sans text-center text-white ">
           <button className="font-bold xl:py-8 xl:px-10 lg:py-8 lg:px-10 hover:text-black">
             <img src="/assets/search.png" alt="search" onClick={searchPage} />
             Search View
