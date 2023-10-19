@@ -15,7 +15,7 @@ const Header = () => {
     router.push("/");
   };
   return (
-    <div className="flex flex-wrap p-5 flex-col md:flex-row items-center hover:text-black bg-[#0332CB]">
+    <div className="flex flex-wrap p-5 flex-col laptop:flex-row items-center hover:text-black bg-[#0332CB]">
       <Image
         src="/assets/logo.png"
         alt="Logo.png"
@@ -31,7 +31,7 @@ const Header = () => {
         <p className="absolute text-3xl mr-5 ">SPEED</p>
         <p className="text-3xl ml-24 mr-5 font-bold">DATABASE</p>
       </a>
-      <ul className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+      <ul className="laptop:ml-auto flex flex-wrap items-center text-base justify-center">
         <a
           href="/search"
           className="mr-5 font-mono text-white hover:text-gray-900"
