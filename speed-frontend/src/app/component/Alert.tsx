@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function AlertDialog(title: string, message: string, buttonValue: string, status: boolean, closeDialog: any) {
+export default function AlertDialog(title: string, message: string, firstButtonValue: string, secondButtonValue: string, status: boolean, closeDialog: any, openDialog: any) {
     return (
         <div>
             <Dialog
@@ -25,8 +25,13 @@ export default function AlertDialog(title: string, message: string, buttonValue:
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={closeDialog} autoFocus>
-                        {buttonValue}
+                        {firstButtonValue}
                     </Button>
+                    {openDialog &&
+                        <Button onClick={openDialog} autoFocus>
+                            {secondButtonValue}
+                        </Button>
+                    }
                 </DialogActions>
             </Dialog>
         </div>

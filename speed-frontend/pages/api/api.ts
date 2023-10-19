@@ -11,19 +11,19 @@ const isHost: boolean = true;
 
 const hostAddress: string | void = (isHost)  ? process.env.NEXT_PUBLIC_HOST_ADDRESS : process.env.NEXT_PUBLIC_BACKEND_LOCAL_ADDRESS;
 
-export async function CreateArticle(article:IArticle){
+export async function CreateArticle(article:any){
     try{
         const response = await axios.post(`${hostAddress}article/upload/`, article,{
             headers: {
               "Access-Control-Allow-Origin": "", 
               "Access-Control-Allow-Methods": "POST", 
               "Access-Control-Allow-Headers": "Content-Type", 
-            }}).then((data:any) => {
-            });
+            }});
 
         return response;
     }
     catch (error){
+        console.log(`error: ${error}`);
         console.error(`error: ${error}`);
        throw error;
     }
@@ -98,6 +98,23 @@ export async function DeleteArticle(id:string){
     }
 }
 
+export async function UpdatePracticeMethod(id:string, updateMethod: any){
+    try{
+        const response :object | void = await axios.patch( `${hostAddress}article/methods/update/${id}`, updateMethod,
+        {
+            headers: {
+                "Access-Control-Allow-Origin": "", 
+                "Access-Control-Allow-Methods": "PATCH", 
+                "Access-Control-Allow-Headers": "Content-Type", 
+              }
+        });
+          return response;
+    }
+    catch(error:any ){
+        console.error(`error${error}`);
+    }
+}
+
 export async function UpdateArticleApproval(id:string, updateArticle: any){
     try{
         const response :object | void = await axios.patch( `${hostAddress}article/update/${id}`, updateArticle,
@@ -107,8 +124,7 @@ export async function UpdateArticleApproval(id:string, updateArticle: any){
                 "Access-Control-Allow-Methods": "PATCH", 
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
-        }).then((data:any) => {
-          });
+        });
           return response;
     }
     catch (error) {
@@ -164,8 +180,7 @@ export async function GetArticleAuthor(author: string){
                 "Access-Control-Allow-Methods": "GET", 
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
-        }).then((data:any) => {
-          });
+        });
           return response;
     }
     catch (error) {
@@ -183,8 +198,7 @@ export async function GetArticleClaim(claim: string){
                 "Access-Control-Allow-Methods": "GET", 
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
-        }).then((data:any) => {
-          });
+        });
           return response;
     }
     catch (error) {
@@ -202,8 +216,7 @@ export async function GetArticleEvidence(evidence: string){
                 "Access-Control-Allow-Methods": "GET", 
                 "Access-Control-Allow-Headers": "Content-Type", 
               }
-        }).then((data:any) => {
-          });
+        });
           return response;
     }
     catch (error) {

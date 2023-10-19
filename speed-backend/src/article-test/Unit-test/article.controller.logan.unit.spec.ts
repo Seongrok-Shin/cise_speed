@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ArticleController } from './article.controller';
-import { ArticleService } from '../service/article.service';
+import { ArticleController } from '../../controller/article.controller';
+import { ArticleService } from '../../service/article.service';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { Connection, connect, Model } from 'mongoose';
-import { Article, ArticleSchema } from '../schema/article.schema';
+import { Article, ArticleSchema } from '../../schema/article.schema';
 import { getModelToken } from '@nestjs/mongoose';
-import { ArticleDTOStub } from '../stubs/article.stub';
+import { ArticleDTOStub } from '../../stubs/article.stub';
 
 describe('ArticleController', () => {
   let articleController: ArticleController;
