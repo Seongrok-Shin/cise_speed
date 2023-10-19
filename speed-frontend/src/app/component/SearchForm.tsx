@@ -5,6 +5,11 @@ import DropdownFilter from "./DropDownCategory";
 import DropdownYearFilter from "./DropDownPublicationYear";
 import Header from "./Header";
 
+import {
+    TablePagination,
+    tablePaginationClasses as classes,
+} from '@mui/base/TablePagination';
+
 export function SearchPageForm({ title, message, firstButtonValue, secondButtonValue, status }: any, closeDialog: any, openDialog: any,
     handleSearchButton: any,
     handlePracticeMethods: any,
@@ -15,6 +20,10 @@ export function SearchPageForm({ title, message, firstButtonValue, secondButtonV
     search: any,
     searchStyle: any,
     tableStyle: any,
+    rowsPerPage: any,
+    page: any,
+    handleChangePage: any,
+    handleChangeRowsPerPage: any,
 ) {
     const resultStyle: string = `text-left flex flex-col items-center w-full h-[32rem] overflow-y-scroll`;
     return (<>
@@ -62,7 +71,7 @@ export function SearchPageForm({ title, message, firstButtonValue, secondButtonV
                     </div>
                     <div className={resultStyle}>
                         {searchResult.length >= 0 && (
-                            <table className="border-solid border-blue-700 border-2">
+                            <table className="border-solid border-blue-700 border-2 bg-white">
                                 <thead>
                                     <tr>
                                         <th className={tableStyle}>Date</th>
@@ -79,24 +88,49 @@ export function SearchPageForm({ title, message, firstButtonValue, secondButtonV
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {searchResult.map((result: IArticle, i: number): any => {
-                                        return (
-                                            <tr key={i}>
-                                                <td className={tableStyle}>{result.date}</td>
-                                                <td className={tableStyle}>{result.title}</td>
-                                                <td className={tableStyle}>{result.authors}</td>
-                                                <td className={tableStyle}>{result.year}</td>
-                                                <td className={tableStyle}>{result.journal}</td>
-                                                <td className={tableStyle}>{result.DOI}</td>
-                                                <td className={tableStyle}>{result.volume}</td>
-                                                <td className={tableStyle}>{result.pages}</td>
-                                                <td className={tableStyle}>{result.claim}</td>
-                                                <td className={tableStyle}>{result.evidence}</td>
-                                                <td className={tableStyle}>{(result.is_approved.isModerator && result.is_approved.isAnalyst) ? "Verified" : "Unverified"}</td>
-                                            </tr>
-                                        );
-                                    })}
+                                    {
+                                        (rowsPerPage > 0 ? searchResult.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : searchResult).map((result: IArticle, i: number): any => {
+                                            return (
+                                                <tr key={i} className="hover:bg-slate-300">
+                                                    <td className={tableStyle}>{result.date}</td>
+                                                    <td className={tableStyle}>{result.title}</td>
+                                                    <td className={tableStyle}>{result.authors}</td>
+                                                    <td className={tableStyle}>{result.year}</td>
+                                                    <td className={tableStyle}>{result.journal}</td>
+                                                    <td className={tableStyle}>{result.DOI}</td>
+                                                    <td className={tableStyle}>{result.volume}</td>
+                                                    <td className={tableStyle}>{result.pages}</td>
+                                                    <td className={tableStyle}>{result.claim}</td>
+                                                    <td className={tableStyle}>{result.evidence}</td>
+                                                    <td className={tableStyle}>{(result.is_approved.isModerator && result.is_approved.isAnalyst) ? "Verified" : "Unverified"}</td>
+                                                </tr>
+                                            );
+                                        })}
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <TablePagination rowsPerPageOptions={[5, 10, 25, { label: 'all', value: -1 }]}
+                                            colSpan={3}
+                                            count={searchResult.length}
+                                            rowsPerPage={rowsPerPage}
+                                            page={page}
+                                            style={{ background: "white" }}
+                                            slotProps={{
+                                                select: {
+                                                    'aria-label': 'rows per page',
+                                                },
+                                                actions: {
+                                                    showFirstButton: true,
+                                                    showLastButton: true,
+                                                },
+                                            }}
+                                            onPageChange={handleChangePage}
+                                            onRowsPerPageChange={handleChangeRowsPerPage}
+                                        >
+
+                                        </TablePagination>
+                                    </tr>
+                                </tfoot>
                             </table>
                         )}
                     </div>

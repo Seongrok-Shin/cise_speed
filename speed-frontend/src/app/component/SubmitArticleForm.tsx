@@ -14,7 +14,7 @@ import BackgroundImage from "./Background";
  * @returns {any}
  */
 
-function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { title, message, firstButtonValue, secondButtonValue, status }: any, closeDialog: any, openDialog: any,) {
+function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { title, message, firstButtonValue, secondButtonValue, status }: any, closeDialog: any, openDialog: any, submitFile: any, preview: any) {
   const resultStyle: string = `absolute flex flex-col items-center w-full `;
   return (
     <>
@@ -22,6 +22,11 @@ function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { 
       {AlertDialog(title, message, firstButtonValue, secondButtonValue, status, closeDialog, openDialog)}
       <div className={resultStyle}>
         <form onSubmit={handleSubmit}>
+          <div className="w-full rounded-xl border-2 border-gray-300 focus:outline-none  bg-white focus:border-indigo-500 text-base px-4 py-2">
+            <input type="file" accept=".bib" onChange={submitFile}></input>
+          </div>
+          <div className="py-2">
+          </div>
           <div className="py-2">
             <input
               name="title"
@@ -83,7 +88,7 @@ function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { 
             <label className="text-white">Pages: </label>
             <input
               name="pages"
-              type="text"
+              type="number"
               placeholder="Enter pages"
               onChange={handleChange}
               value={data.pages}
@@ -176,12 +181,12 @@ function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { 
               Send
             </button>
           </div>
-        </form>
-      </div>
+        </form >
+      </div >
       {BackgroundImage("/assets/background.png", "absolute w-full h-full z-[-1]")}
-      <div className="absolute w-full py-2.5 bottom-0 inset-x-0 text-white text-xs text-center leading-4">
+      < div className="absolute w-full py-2.5 bottom-0 inset-x-0 text-white text-xs text-center leading-4" >
         © 2023 by SPEED DATABASE Powered and secured by AUT
-      </div>
+      </div >
     </>
   );
 }

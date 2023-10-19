@@ -10,7 +10,7 @@ export function AnalystPageForm({ title, message, firstButtonValue, secondButton
         <div className=" absolute w-full flex justify-center">
             <div className={resultStyle}>
                 {modeQueue.length >= 0 && (
-                    <table className="border-solid border-gray-300 border-2 ">
+                    <table className="border-solid border-gray-300 border-2 bg-white">
                         <thead>
                             <tr>
                                 <th className={tableStyle}>Title</th>
@@ -24,7 +24,7 @@ export function AnalystPageForm({ title, message, firstButtonValue, secondButton
                         <tbody>
                             {modeQueue.map((result: IArticle, i: number): any => {
                                 return (
-                                    <tr key={i}>
+                                    <tr key={i} className="hover:bg-slate-300">
                                         <td className={tableStyle}>{result.title}</td>
                                         <td className={tableStyle}>{result.authors}</td>
                                         <td className={tableStyle}>{result.year}</td>
