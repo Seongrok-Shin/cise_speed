@@ -5,7 +5,7 @@ import { DeleteArticle, GetArticles } from "../../../pages/api/api";
 import { AdminPageForm } from "../component/AdminForm";
 export default function Admin() {
     const [modeQueue, setModQueue] = useState<any[]>([]);
-    const tableStyle: string = " sm:w-[45px] md:w-[80px] lg:w-[140px] border-solid border-gray-300 border-2 pr-2 pl-2  bg-zinc-50 sm:text-xs md:text-md lg:text-lg break-all";
+    const tableStyle: string = " sm:w-[45px] md:w-[80px] lg:w-[140px] border-solid border-gray-300 border-2 pr-2 pl-2 sm:text-xs md:text-md lg:text-lg break-all";
     const buttonRejectStyle: string = "sm:px-3 lg:px-5 rounded-xl border-2 border-red-600 focus:outline-none focus:border-black text-base font-medium text-gray-700 hover:bg-gray-100  bg-sky-50 sm:text-xs md:text-md lg:text-lg";
 
     const [dialog, setDialog] = useState({

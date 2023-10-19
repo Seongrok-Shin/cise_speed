@@ -14,7 +14,7 @@ export default function AnalystView() {
     targetValue: "",
     id: ""
   });
-  const tableStyle: string = " sm:w-[45px] md:w-[80px] lg:w-[140px] border-solid border-gray-300 border-2 pr-2 pl-2  bg-zinc-50 sm:text-xs md:text-md lg:text-lg break-all";
+  const tableStyle: string = " sm:w-[45px] md:w-[80px] lg:w-[140px] border-solid border-gray-300 border-2 pr-2 pl-2  sm:text-xs md:text-md lg:text-lg break-all";
   const buttonRejectStyle: string = "sm:px-3 lg:px-5 rounded-xl border-2 border-red-600 focus:outline-none focus:border-black text-base font-medium text-gray-700 hover:bg-gray-100  bg-sky-50 sm:text-xs md:text-md lg:text-lg";
   const buttonAcceptStyle: string = "sm:px-3 lg:px-5 rounded-xl border-2 border-sky-300 focus:outline-none focus:border-black text-base font-medium hover:bg-gray-100 hover:text-gray-700 text-white bg-sky-600 sm:text-xs md:text-md lg:text-lg";
   const [dialog, setDialog] = useState({
@@ -100,6 +100,17 @@ export default function AnalystView() {
     });
   }
   function openDialog() {
+    if (data.targetValue === "") {
+      alert("Please insert your Software Engineering Method");
+      setDialog({
+        title: "",
+        message: "",
+        firstButtonValue: "",
+        secondButtonValue: "",
+        status: false,
+      });
+      return;
+    }
     modAccept(data.id);
     setDialog({
       title: "",
