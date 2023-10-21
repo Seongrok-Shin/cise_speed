@@ -14,7 +14,7 @@ import BackgroundImage from "./Background";
  * @returns {any}
  */
 
-function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { title, message, firstButtonValue, secondButtonValue, status }: any, closeDialog: any, openDialog: any, submitFile: any, preview: any) {
+function SubmitPageForm(handleChange: any, handleSubmit: any, data: IArticle, { title, message, firstButtonValue, secondButtonValue, status }: any, closeDialog: any, openDialog: any, submitFile: any) {
   const resultStyle: string = `absolute flex flex-col items-center w-full `;
   return (
     <>

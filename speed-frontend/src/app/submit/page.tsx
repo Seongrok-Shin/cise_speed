@@ -4,7 +4,7 @@ import SubmitPageForm from "../component/SubmitArticleForm";
 import IArticle from "../interface/IArticle";
 import { CreateArticle } from "../../../pages/api/api";
 import { useRouter } from "next/navigation";
-import { parseBibFile, normalizeFieldValue } from "bibtex";
+import { BibtexParser } from "bibtex-js-parser";
 
 /**
  * @author @Seongrok-Shin
@@ -23,6 +23,16 @@ const SubmitPage = () => {
     status: false,
   })
   const initialDate = new Date().toLocaleDateString();
+  const [tempData, setTempData] = useState<any>({
+    doi: [],
+    authors: [],
+    journal: [],
+    pages: [],
+    title: [],
+    volume: [],
+    year: [],
+  });
+
   const [data, setData] = useState<any>({
     title: '',
     authors: [],
@@ -49,13 +59,12 @@ const SubmitPage = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [jsonData, setJsonData] = useState<any>({});
 
   useEffect(() => {
     document.body.style.backgroundColor = "#0332CB";
     document.title = "submission form";
     document.body.style.overflow = "visible";
-  }, [dialog, jsonData])
+  }, [dialog, data, tempData])
 
   function closeDialog() {
     setDialog({
@@ -68,6 +77,7 @@ const SubmitPage = () => {
     router.push('search');
   }
 
+
   function submitFile(event: any) {
     const file = event.target.files[0];
 
@@ -75,33 +85,46 @@ const SubmitPage = () => {
       const reader = new FileReader();
       reader.onload = function (event) {
         if (event.target != null) {
-          const bibtex = event.target.result as string;
-          const parsedData: any = parseBibFile(bibtex);
-
-          if (parsedData != null) {
-            if (parsedData.entries) { // Check if 'entries' is defined
-              // Iterate through BibTeX entries and log the "author" field for each entry
-              const entries = parsedData.entries$;
-              const extractedEntries = [];
-
-              for (const entryId in entries) {
-                const entry = entries[entryId];
-                const author = entry.fields.author ? entry.fields.author.data.join(" ") : "Author not found";
-                const title = entry.fields.title ? entry.fields.title.data.join(" ") : "Title not found";
-                const journal = entry.fields.journal ? entry.fields.journal.data.join(" ") : "Journal not found";
-
-                extractedEntries.push({ author, title, journal });
-              }
-
-              console.log(JSON.stringify(extractedEntries));
-            } else {
-              console.log("No BibTeX entries found.");
+          const bibtexData = event.target.result as string;
+          const parsedData: any[] = BibtexParser.parseToJSON(bibtexData);
+          const extractedData = parsedData.map((item: any) => {
+            if (tempData.doi[0] == null && item.doi != null) {
+              tempData.doi.push(item.doi);
             }
-          }
+            if (tempData.authors[0] == null && item.author != null) {
+              tempData.authors.push(item.author);
+            }
+            if (tempData.journal[0] == null && item.journal != null) {
+              tempData.journal.push(item.journal);
+            }
+            if (tempData.pages[0] == null && item.pages != null) {
+              tempData.pages.push(parseInt(item.pages.split('--')[1]));
+            }
+            if (tempData.title[0] == null && item.title != null) {
+              tempData.title.push(item.title);
+            }
+            if (tempData.volume[0] == null && item.volume != null) {
+              tempData.volume.push(parseInt(item.volume));
+            }
+            if (tempData.year[0] == null && item.year != null) {
+              tempData.year.push(parseInt(item.year));
+            }
+            return tempData;
+          });
+          setData({
+            ...data,
+            title: String(tempData.title[0]),
+            DOI: String(tempData.doi[0]),
+            authors: tempData.authors,
+            journal: String(tempData.journal[0]),
+            pages: Number(tempData.pages[0]),
+            volume: Number(tempData.volume[0]),
+            year: Number(tempData.year[0]),
+          });
+
 
         }
       };
-
       reader.readAsText(file);
     }
   }
@@ -136,6 +159,20 @@ const SubmitPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
+
+      if (tempData.title[0] != null || tempData.doi[0] != null || tempData.authors[0] != null || tempData.journal[0] != null || tempData.pages[0] != null || tempData.year[0] != null) {
+        setData({
+          ...data,
+          title: String(tempData.title[0]),
+          DOI: String(tempData.doi[0]),
+          authors: String(tempData.authors[0]),
+          journal: String(tempData.journal[0]),
+          pages: Number(tempData.pages[0]),
+          volume: Number(tempData.volume[0]),
+          year: Number(tempData.year[0]),
+        });
+      }
+
       await CreateArticle(data);
 
       setDialog({
@@ -160,7 +197,7 @@ const SubmitPage = () => {
   };
 
 
-  return SubmitPageForm(handleChange, handleSubmit, data, dialog, closeDialog, null, submitFile, JSON.stringify(jsonData));
+  return SubmitPageForm(handleChange, handleSubmit, data, dialog, closeDialog, null, submitFile);
 };
 
 export default SubmitPage;

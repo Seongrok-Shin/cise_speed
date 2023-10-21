@@ -10,7 +10,7 @@ import {
 
 export class CreateArticleDTO {
   @IsString()
-  @MaxLength(30)
+  @MaxLength(255)
   @IsNotEmpty()
   readonly title: string;
 
@@ -19,7 +19,7 @@ export class CreateArticleDTO {
   readonly authors: string[];
 
   @IsString()
-  @MaxLength(30)
+  @MaxLength(255)
   readonly journal: string;
 
   @IsNumber()
